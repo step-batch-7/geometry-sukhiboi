@@ -1,5 +1,5 @@
 const assert = require("chai").assert;
-const {Line} = require("../src/line");
+const { Line } = require("../src/line");
 
 describe("#toString()", () => {
   it("should give properties of the line", () => {
@@ -32,6 +32,25 @@ describe("#isEqualTo()", () => {
     const pointb1 = [5, 4];
     const pointb2 = [8, 5];
     const line2 = new Line(pointb1, pointb2);
+    const actual = line1.isEqualTo(line2);
+    const expected = false;
+    assert.strictEqual(actual, expected);
+  });
+
+  it("should invalidate when other type of object is compared", () => {
+    const pointa1 = [2, 3];
+    const pointa2 = [5, 8];
+    const line1 = new Line(pointa1, pointa2);
+    const line2 = {
+      start: {
+        x: 2,
+        y: 3
+      },
+      end: {
+        x: 5,
+        y: 8
+      }
+    };
     const actual = line1.isEqualTo(line2);
     const expected = false;
     assert.strictEqual(actual, expected);
