@@ -12,10 +12,7 @@ class Line {
   }
 
   toString() {
-    const startingPoint = `starting point => x:${this.start.x}, y:${this.start.y}`;
-    const endingPoint = `ending point => x:${this.end.x}, y:${this.end.y}`;
-    const stringFormat = startingPoint + "\n" + endingPoint;
-    return stringFormat;
+    return `Line (${this.start.x}, ${this.start.y}) (${this.end.x}, ${this.end.y})`;
   }
 
   isEqualTo(otherLine) {
