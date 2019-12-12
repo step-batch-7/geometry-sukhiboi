@@ -6,8 +6,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "nyc mocha",
-    "test-w": "mocha -w reporter=min"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
