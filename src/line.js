@@ -17,6 +17,17 @@ class Line {
     const stringFormat = startingPoint + "\n" + endingPoint;
     return stringFormat;
   }
+
+  isEqualTo(line) {
+    const startX = (this.start.x == line.start.x);
+    const startY = (this.start.y == line.start.y);
+    const endX = (this.end.x == line.end.x);
+    const endY = (this.end.y == line.end.y);
+    const startCheck = startX && startY;
+    const endCheck = endX && endY;
+    const lineCheck = startCheck && endCheck;
+    return lineCheck;
+  }
 }
 
 module.exports = { Line };
