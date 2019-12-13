@@ -109,4 +109,51 @@ describe("#Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("#isParallelTo()", () => {
+    it("should validate when two lines are parallel", () => {
+      const pointa1 = { x: 10, y: 15 };
+      const pointa2 = { x: 40, y: 30 };
+      const line1 = new Line(pointa1, pointa2);
+      const pointb1 = { x: 10, y: 5 };
+      const pointb2 = { x: 50, y: 25 };
+      const line2 = new Line(pointb1, pointb2);
+      const actual = line1.isParallelTo(line2);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+    it("should invalidate when two lines are not parallel", () => {
+      const pointa1 = { x: 10, y: -15 };
+      const pointa2 = { x: -40, y: 30 };
+      const line1 = new Line(pointa1, pointa2);
+      const pointb1 = { x: 10, y: 5 };
+      const pointb2 = { x: 50, y: 25 };
+      const line2 = new Line(pointb1, pointb2);
+      const actual = line1.isParallelTo(line2);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+    it("should validate when two lines are overlapping", () => {
+      const pointa1 = { x: 0, y: 6 };
+      const pointa2 = { x: 6, y: 6 };
+      const line1 = new Line(pointa1, pointa2);
+      const pointb1 = { x: 5, y: 6 };
+      const pointb2 = { x: 9, y: 6 };
+      const line2 = new Line(pointb1, pointb2);
+      const actual = line1.isParallelTo(line2);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
+    it("should validate when two lines have same coordinates", () => {
+      const pointa1 = { x: 1, y: 6 };
+      const pointa2 = { x: 1, y: 6 };
+      const line1 = new Line(pointa1, pointa2);
+      const pointb1 = { x: 1, y: 6 };
+      const pointb2 = { x: 1, y: 6 };
+      const line2 = new Line(pointb1, pointb2);
+      const actual = line1.isParallelTo(line2);
+      const expected = false;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
