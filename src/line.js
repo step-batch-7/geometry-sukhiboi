@@ -1,3 +1,9 @@
+const arePointsEqual = function(point1, point2) {
+  const areXcoordinateEqual = point1.x === point2.x;
+  const areYcoordinateEqual = point1.y === point2.y;
+  return areXcoordinateEqual && areYcoordinateEqual;
+};
+
 class Line {
   constructor(start, end) {
     this.start = {
@@ -15,18 +21,11 @@ class Line {
   }
 
   isEqualTo(otherLine) {
-    const startX = this.start.x == otherLine.start.x;
-    const startY = this.start.y == otherLine.start.y;
-    const endX = this.end.x == otherLine.end.x;
-    const endY = this.end.y == otherLine.end.y;
-
-    const startCheck = startX && startY;
-    const endCheck = endX && endY;
-
-    const lineCheck = startCheck && endCheck;
-    const typeCHeck = otherLine instanceof Line;
-
-    return lineCheck && typeCHeck;
+    const typeCheck = otherLine instanceof Line;
+    const areStartPointEqual = arePointsEqual(this.start, otherLine.start);
+    const areEndPointEqual = arePointsEqual(this.end, otherLine.end);
+    const areLinesEqual = typeCheck && areStartPointEqual && areEndPointEqual;
+    return areLinesEqual;
   }
 }
 
