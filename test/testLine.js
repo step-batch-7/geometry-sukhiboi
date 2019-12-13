@@ -68,9 +68,25 @@ describe("#Line", () => {
   });
 
   describe("#length", () => {
-    it("should calculate the length of line having 2 different points", () => {
+    it("should calculate the length of line having different start and end point", () => {
       const point1 = { x: 1, y: 1 };
       const point2 = { x: 4, y: 5 };
+      const line = new Line(point1, point2);
+      const actual = line.length;
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should calculate the length of line having same start and end point", () => {
+      const point1 = { x: 1, y: 1 };
+      const point2 = { x: 1, y: 1 };
+      const line = new Line(point1, point2);
+      const actual = line.length;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should calculate the length of line having different start and end point when the points are negitive", () => {
+      const point1 = { x: -2, y: -2 };
+      const point2 = { x: 1, y: 2 };
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 5;

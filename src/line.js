@@ -37,7 +37,8 @@ class Line {
     const diffOfYCoordinates = this.end.y - this.start.y;
     const horizontalDistance = Math.pow(diffOfXCoordinates, 2);
     const verticalDistance = Math.pow(diffOfYCoordinates, 2);
-    const length = Math.sqrt(horizontalDistance + verticalDistance);
+    const distance = Math.sqrt(horizontalDistance + verticalDistance);
+    const length = Number.parseFloat(distance);
     return length;
   }
 }
