@@ -66,4 +66,15 @@ describe("#Line", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("#length", () => {
+    it("should calculate the length of line having 2 different points", () => {
+      const point1 = { x: 1, y: 1 };
+      const point2 = { x: 4, y: 5 };
+      const line = new Line(point1, point2);
+      const actual = line.length;
+      const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
 });
