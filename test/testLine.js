@@ -84,12 +84,28 @@ describe("#Line", () => {
       const expected = 0;
       assert.deepStrictEqual(actual, expected);
     });
-    it("should calculate the length of line having different start and end point when the points are negitive", () => {
+    it("should calculate the length of line having different start and end point when the points are negative", () => {
       const point1 = { x: -2, y: -2 };
       const point2 = { x: 1, y: 2 };
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 5;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should calculate the length of line when both points are on X-axis", () => {
+      const point1 = { x: 0, y: 1 };
+      const point2 = { x: 0, y: -1 };
+      const line = new Line(point1, point2);
+      const actual = line.length;
+      const expected = 2;
+      assert.deepStrictEqual(actual, expected);
+    });
+    it("should calculate the length of line when both points are on Y-axis", () => {
+      const point1 = { x: 1, y: 0 };
+      const point2 = { x: -1, y: 0 };
+      const line = new Line(point1, point2);
+      const actual = line.length;
+      const expected = 2;
       assert.deepStrictEqual(actual, expected);
     });
   });
