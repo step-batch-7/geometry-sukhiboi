@@ -156,4 +156,41 @@ describe("#Line", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("#slope", () => {
+    it("should calculate the slope of line with different start and end point", () => {
+      const point1 = { x: 3, y: 1 };
+      const point2 = { x: 4, y: 5 };
+      const line = new Line(point1, point2);
+      const actual = line.slope;
+      const expected = 4;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should calculate the slope of line parallel to X-axis", () => {
+      const point1 = { x: 1, y: 1 };
+      const point2 = { x: 6, y: 1 };
+      const line = new Line(point1, point2);
+      const actual = line.slope;
+      const expected = 0;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should calculate the slope of line parallel to Y-axis", () => {
+      const point1 = { x: 0, y: 1 };
+      const point2 = { x: 0, y: 3 };
+      const line = new Line(point1, point2);
+      const actual = line.slope;
+      const expected = Infinity;
+      assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should calculate the slope of line whose start and end point are same", () => {
+      const point1 = { x: 0, y: 1 };
+      const point2 = { x: 0, y: 1 };
+      const line = new Line(point1, point2);
+      const actual = line.slope;
+      assert.isNaN(actual);
+    });
+  });
 });

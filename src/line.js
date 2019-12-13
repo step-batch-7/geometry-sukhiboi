@@ -55,6 +55,10 @@ class Line {
     const areLinesParallel = slopeOfThisLine == slopeOfOtherLine;
     return areLinesParallel;
   }
+
+  get slope() {
+    return calculateSlope(this);
+  }
 }
 
 module.exports = { Line };
