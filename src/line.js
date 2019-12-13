@@ -22,10 +22,11 @@ class Line {
 
   isEqualTo(otherLine) {
     const typeCheck = otherLine instanceof Line;
-    const areStartPointEqual = arePointsEqual(this.start, otherLine.start);
-    const areEndPointEqual = arePointsEqual(this.end, otherLine.end);
-    const areLinesEqual = typeCheck && areStartPointEqual && areEndPointEqual;
-    return areLinesEqual;
+    return (
+      typeCheck &&
+      arePointsEqual(this.start, otherLine.start) &&
+      arePointsEqual(this.end, otherLine.end)
+    );
   }
 }
 
