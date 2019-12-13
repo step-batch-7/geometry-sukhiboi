@@ -56,5 +56,14 @@ describe("#Line", () => {
       const expected = false;
       assert.strictEqual(actual, expected);
     });
+
+    it("should validate when both th e object are equal", () => {
+      const pointa1 = { x: 2, y: 3 };
+      const pointa2 = { x: 5, y: 8 };
+      const line1 = new Line(pointa1, pointa2);
+      const actual = line1.isEqualTo(line1);
+      const expected = true;
+      assert.strictEqual(actual, expected);
+    });
   });
 });

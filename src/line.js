@@ -1,7 +1,7 @@
 const arePointsEqual = function(point1, point2) {
-  const areXcoordinateEqual = point1.x === point2.x;
-  const areYcoordinateEqual = point1.y === point2.y;
-  return areXcoordinateEqual && areYcoordinateEqual;
+  const areXcoordinatesEqual = point1.x === point2.x;
+  const areYcoordinatesEqual = point1.y === point2.y;
+  return areXcoordinatesEqual && areYcoordinatesEqual;
 };
 
 class Line {
@@ -17,16 +17,19 @@ class Line {
   }
 
   toString() {
-    return `Line (${this.start.x}, ${this.start.y}) (${this.end.x}, ${this.end.y})`;
+    const startingPoint = `(${this.start.x}, ${this.start.y})`;
+    const endingPoint = `(${this.end.x}, ${this.end.y})`;
+    return `Line ${startingPoint} ${endingPoint}`;
   }
 
   isEqualTo(otherLine) {
-    const typeCheck = otherLine instanceof Line;
-    return (
-      typeCheck &&
-      arePointsEqual(this.start, otherLine.start) &&
-      arePointsEqual(this.end, otherLine.end)
-    );
+    if (this === otherLine) return true;
+    if (!(otherLine instanceof Line)) return false;
+
+    const areStartingPointsEqual = arePointsEqual(this.start, otherLine.start);
+    const areEndingPointsEqual = arePointsEqual(this.end, otherLine.end);
+    const areLinesEqual = areStartingPointsEqual && areEndingPointsEqual;
+    return areLinesEqual;
   }
 }
 
