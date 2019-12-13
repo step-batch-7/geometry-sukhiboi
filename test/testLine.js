@@ -167,6 +167,15 @@ describe("#Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
 
+    it("should calculate the slope of line with different start and end point when both are negative", () => {
+      const point1 = { x: -7, y: -4 };
+      const point2 = { x: -3, y: -8 };
+      const line = new Line(point1, point2);
+      const actual = line.slope;
+      const expected = -1;
+      assert.deepStrictEqual(actual, expected);
+    });
+
     it("should calculate the slope of line parallel to X-axis", () => {
       const point1 = { x: 1, y: 1 };
       const point2 = { x: 6, y: 1 };
