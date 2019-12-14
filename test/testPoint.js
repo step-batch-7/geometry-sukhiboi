@@ -12,6 +12,7 @@ describe("Point", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
   describe("#isEqualTo()", () => {
     it("should validate two equal points", () => {
       const xCoordinateOfP1 = 2;
@@ -47,6 +48,25 @@ describe("Point", () => {
       const point = new Point(xCoordinate, yCoordinate);
       const actual = point.isEqualTo(point);
       assert.isOk(actual);
+    });
+  });
+
+  describe("#visit()", () => {
+    it("should evaluate sum of coordinates when sum function is given", function() {
+      const xCoordinate = 2;
+      const yCoordinate = 3;
+      const point = new Point(xCoordinate, yCoordinate);
+      const actual = point.visit((x, y) => x + y);
+      const expected = 5;
+      assert.strictEqual(actual, expected);
+    });
+    it("should evaluate multiplication of coordinates when multiply function is given", function() {
+      const xCoordinate = 5;
+      const yCoordinate = 3;
+      const point = new Point(xCoordinate, yCoordinate);
+      const actual = point.visit((x, y) => x * y);
+      const expected = 15;
+      assert.strictEqual(actual, expected);
     });
   });
 });

@@ -15,6 +15,9 @@ class Point {
 
     return areXcoordinatesEqual && areYcoordinatesEqual;
   }
+  visit(action) {
+    return action(this.x, this.y);
+  }
 }
 
 module.exports = { Point };
