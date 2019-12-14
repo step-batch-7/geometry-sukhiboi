@@ -18,6 +18,10 @@ class Point {
   visit(action) {
     return action(this.x, this.y);
   }
+  clone() {
+    const newPoint = new Point(this.x, this.y);
+    return newPoint;
+  }
 }
 
 module.exports = { Point };

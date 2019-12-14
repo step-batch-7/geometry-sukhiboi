@@ -69,4 +69,16 @@ describe("Point", () => {
       assert.strictEqual(actual, expected);
     });
   });
+  
+  describe("#clone()", () => {
+    it("should give Point object with same coordinates as given", () => {
+      const xCoordinate = 2;
+      const yCoordinate = 9;
+      const point1 = new Point(xCoordinate, yCoordinate);
+      const point2 = point1.clone();
+      assert.notStrictEqual(point1, point2);
+      assert.deepStrictEqual(point1, point2);
+
+    });
+  });
 });
