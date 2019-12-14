@@ -1,7 +1,7 @@
 const assert = require("chai").assert;
 const { Line } = require("../src/line");
 
-describe("Line", () => { 
+describe("Line", () => {
   describe("#toString()", () => {
     it("should give properties of the line", () => {
       const point1 = { x: 2, y: 5 };
@@ -34,7 +34,7 @@ describe("Line", () => {
       const pointb2 = { x: 8, y: 5 };
       const line2 = new Line(pointb1, pointb2);
       const actual = line1.isEqualTo(line2);
-      assert.isNotOk(actual); 
+      assert.isNotOk(actual);
     });
 
     it("should invalidate when other type of object is compared", () => {
@@ -47,7 +47,7 @@ describe("Line", () => {
     });
 
     it("should validate when both the given object is being compared by itself", () => {
-      const point1 = { x: 2, y: 3 }; 
+      const point1 = { x: 2, y: 3 };
       const point2 = { x: 5, y: 8 };
       const line = new Line(point1, point2);
       const actual = line.isEqualTo(line);
@@ -64,13 +64,14 @@ describe("Line", () => {
       const expected = 5;
       assert.strictEqual(actual, expected);
     });
-    it("should calculate the length of line having different start and end point when the points are negative", () => { // Use a better message to describe your test
+    it("should calculate the length of line having different start and end point when the points are negative", () => {
+      // Use a better message to describe your test
       const point1 = { x: -2, y: -2 };
       const point2 = { x: 1, y: 2 };
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 5;
-      assert.strictEqual(actual, expected); 
+      assert.strictEqual(actual, expected);
     });
     it("should calculate the length of line when both points are on X-axis", () => {
       const point1 = { x: 0, y: 1 };
@@ -78,7 +79,7 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 2;
-      assert.strictEqual(actual, expected); 
+      assert.strictEqual(actual, expected);
     });
     it("should calculate the length of line when both points are on Y-axis", () => {
       const point1 = { x: 1, y: 0 };
@@ -86,7 +87,7 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 2;
-      assert.strictEqual(actual, expected); 
+      assert.strictEqual(actual, expected);
     });
   });
 
@@ -124,7 +125,8 @@ describe("Line", () => {
   });
 
   describe("#slope", () => {
-    it("should calculate the slope of line with different start and end point", () => { // Every line has different start and end point or else it's not a line
+    it("should calculate the slope of line with different start and end point", () => {
+      // Every line has different start and end point or else it's not a line
       const point1 = { x: 3, y: 1 };
       const point2 = { x: 4, y: 5 };
       const line = new Line(point1, point2);
