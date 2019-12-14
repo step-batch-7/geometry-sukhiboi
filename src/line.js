@@ -1,3 +1,5 @@
+const { Point } = require("./point");
+
 const arePointsEqual = function(point1, point2) {
   const areXcoordinatesEqual = point1.x === point2.x;
   const areYcoordinatesEqual = point1.y === point2.y;
@@ -62,10 +64,10 @@ class Line {
   }
 
   findX(yCoordinate) {
-    if(yCoordinate > this.end.y || yCoordinate < this.start.y) return NaN;
-    if(this.slope == 0) return this.start.x;
+    if (yCoordinate > this.end.y || yCoordinate < this.start.y) return NaN;
+    if (this.slope == 0) return this.start.x;
     const slope = this.slope;
-    const xCoordinate = ((yCoordinate - this.start.y) / slope) + this.start.x;
+    const xCoordinate = (yCoordinate - this.start.y) / slope + this.start.x;
     return xCoordinate;
   }
 
@@ -73,8 +75,16 @@ class Line {
     if (xCoordinate > this.end.x || xCoordinate < this.start.x) return NaN;
     if (this.slope == undefined) return this.start.y;
     const slope = this.slope;
-    const yCoordinate = ((xCoordinate - this.start.x) / slope) + this.start.y;
+    const yCoordinate = (xCoordinate - this.start.x) / slope + this.start.y;
     return yCoordinate;
+  }
+  split() {
+    const sumOfXCoordinates = this.start.x + this.end.x;
+    const sumOfYCoordinates = this.start.y + this.end.y;
+    const midPoint = new Point(sumOfXCoordinates/2, sumOfYCoordinates/2);
+    const firstHalf = new Line(this.start, midPoint);
+    const secondHalf = new Line(midPoint, this.end);
+    return [firstHalf, secondHalf];
   }
 }
 
