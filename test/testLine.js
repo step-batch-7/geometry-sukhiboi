@@ -65,7 +65,6 @@ describe("Line", () => {
       assert.strictEqual(actual, expected);
     });
     it("should calculate the length of line having different start and end point when the points are negative", () => {
-      // Use a better message to describe your test
       const point1 = { x: -2, y: -2 };
       const point2 = { x: 1, y: 2 };
       const line = new Line(point1, point2);
@@ -126,13 +125,12 @@ describe("Line", () => {
 
   describe("#slope", () => {
     it("should calculate the slope of line with different start and end point", () => {
-      // Every line has different start and end point or else it's not a line
       const point1 = { x: 3, y: 1 };
       const point2 = { x: 4, y: 5 };
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = 4;
-      assert.strictEqual(actual, expected); // same as line 77
+      assert.strictEqual(actual, expected);
     });
 
     it("should calculate the slope of line with different start and end point when both are negative", () => {
@@ -141,7 +139,7 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = -1;
-      assert.strictEqual(actual, expected); // same asa line 77
+      assert.strictEqual(actual, expected); 
     });
 
     it("should calculate the slope of line parallel to X-axis", () => {
