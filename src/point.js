@@ -6,6 +6,15 @@ class Point {
   toString() {
     return `[Point @(${this.x},${this.y})]`;
   }
+  isEqualTo(otherPoint) {
+    if (this === otherPoint) return true;
+    if (!(otherPoint instanceof Point)) return false;
+
+    const areXcoordinatesEqual = this.x == otherPoint.x;
+    const areYcoordinatesEqual = this.y == otherPoint.y;
+
+    return areXcoordinatesEqual && areYcoordinatesEqual;
+  }
 }
 
 module.exports = { Point };

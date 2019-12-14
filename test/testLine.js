@@ -15,7 +15,7 @@ describe("Line", () => {
   });
 
   describe("#isEqualTo()", () => {
-    it("should validate two same lines", () => {
+    it("should validate two equal lines", () => {
       const pointa1 = { x: 2, y: 3 };
       const pointa2 = { x: 5, y: 8 };
       const line1 = new Line(pointa1, pointa2);
@@ -47,7 +47,7 @@ describe("Line", () => {
       assert.isNotOk(actual);
     });
 
-    it("should validate when both the given object is being compared by itself", () => {
+    it("should validate when the given object is being compared by itself", () => {
       const point1 = { x: 2, y: 3 };
       const point2 = { x: 5, y: 8 };
       const line = new Line(point1, point2);
