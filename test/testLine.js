@@ -111,22 +111,12 @@ describe("Line", () => {
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);
     });
-    it("should validate when two lines are overlapping", () => {
+    it("should invalidate when two lines are overlapping", () => {
       const pointa1 = { x: 0, y: 6 };
       const pointa2 = { x: 6, y: 6 };
       const line1 = new Line(pointa1, pointa2);
       const pointb1 = { x: 5, y: 6 };
       const pointb2 = { x: 9, y: 6 };
-      const line2 = new Line(pointb1, pointb2);
-      const actual = line1.isParallelTo(line2);
-      assert.isOk(actual);
-    });
-    it("should validate when two lines have same coordinates", () => {
-      const pointa1 = { x: 1, y: 6 };
-      const pointa2 = { x: 1, y: 6 };
-      const line1 = new Line(pointa1, pointa2);
-      const pointb1 = { x: 1, y: 6 };
-      const pointb2 = { x: 1, y: 6 };
       const line2 = new Line(pointb1, pointb2);
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);

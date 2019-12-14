@@ -46,6 +46,9 @@ class Line {
     const slopeOfThisLine = this.slope;
     const slopeOfOtherLine = otherLine.slope;
     const areLinesParallel = slopeOfThisLine == slopeOfOtherLine;
+    const yInterceptOfThisLine = this.end.y - slopeOfThisLine * this.end.x;
+    const yInterceptOfOtherLine = otherLine.end.y - slopeOfOtherLine * otherLine.end.x;
+    if(yInterceptOfThisLine == yInterceptOfOtherLine) return false;
     return areLinesParallel;
   }
 
