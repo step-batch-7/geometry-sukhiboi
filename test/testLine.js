@@ -8,7 +8,7 @@ describe("Line", () => {
       const point2 = { x: 4, y: 6 };
       const line = new Line(point1, point2);
       const actual = line.toString();
-      const expected = "Line (2, 5) (4, 6)";
+      const expected = "[Line (2, 5) to (4, 6)]";
       assert.strictEqual(actual, expected);
     });
   });
