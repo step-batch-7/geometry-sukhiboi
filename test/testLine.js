@@ -111,7 +111,7 @@ describe("Line", () => {
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);
     });
-    it.only("should validate when two lines are overlapping", () => {
+    it("should validate when two lines are overlapping", () => {
       const pointa1 = { x: 0, y: 6 };
       const pointa2 = { x: 6, y: 6 };
       const line1 = new Line(pointa1, pointa2);
