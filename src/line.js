@@ -47,8 +47,9 @@ class Line {
     const slopeOfOtherLine = otherLine.slope;
     const areLinesParallel = slopeOfThisLine == slopeOfOtherLine;
     const yInterceptOfThisLine = this.end.y - slopeOfThisLine * this.end.x;
-    const yInterceptOfOtherLine = otherLine.end.y - slopeOfOtherLine * otherLine.end.x;
-    if(yInterceptOfThisLine == yInterceptOfOtherLine) return false;
+    const yInterceptOfOtherLine =
+      otherLine.end.y - slopeOfOtherLine * otherLine.end.x;
+    if (yInterceptOfThisLine == yInterceptOfOtherLine) return false;
     return areLinesParallel;
   }
 
@@ -58,6 +59,12 @@ class Line {
     const slope = diffOfYCoordinates / diffOfXCoordinates;
     if (slope === Infinity) return undefined;
     return slope;
+  }
+
+  findX(yCoordinate) {
+    const slope = this.slope;
+    const xCoordinate = ((yCoordinate - this.start.y) / slope) + this.start.x;
+    return xCoordinate;
   }
 }
 

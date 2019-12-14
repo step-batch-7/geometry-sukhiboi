@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const { Line } = require("../src/line");
+const { Point } = require("../src/point");
 
 describe("Line", () => {
   describe("#toString()", () => {
@@ -139,7 +140,7 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = -1;
-      assert.strictEqual(actual, expected); 
+      assert.strictEqual(actual, expected);
     });
 
     it("should calculate the slope of line parallel to X-axis", () => {
@@ -157,6 +158,17 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = undefined;
+      assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("#findX()", () => {
+    it("should give the x-coordinate when given y-coordinate lies on the given line segment", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(3, 3);
+      const line = new Line(point1, point2);
+      const actual = line.findX(2)
+      const expected = 2;
       assert.strictEqual(actual, expected);
     });
   });
