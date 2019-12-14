@@ -167,8 +167,23 @@ describe("Line", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(3, 3);
       const line = new Line(point1, point2);
-      const actual = line.findX(2)
+      const actual = line.findX(2);
       const expected = 2;
+      assert.strictEqual(actual, expected);
+    });
+    it("should give NaN when given y-coordinate doesn't lies on the given line segment", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(3, 3);
+      const line = new Line(point1, point2);
+      const actual = line.findX(7);
+      assert.isNaN(actual);
+    });
+    it("should give x-coordinate of start point when line is parallel to X-axis", () => {
+      const point1 = new Point(3, 1);
+      const point2 = new Point(6, 1);
+      const line = new Line(point1, point2);
+      const actual = line.findX(1);
+      const expected = 3;
       assert.strictEqual(actual, expected);
     });
   });
@@ -179,6 +194,21 @@ describe("Line", () => {
       const point2 = new Point(4, 4);
       const line = new Line(point1, point2);
       const actual = line.findY(3);
+      const expected = 3;
+      assert.strictEqual(actual, expected);
+    });
+    it("should give NaN when given x-coordinate doesn't lies on the given line segment", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(4, 4);
+      const line = new Line(point1, point2);
+      const actual = line.findY(9);
+      assert.isNaN(actual);
+    });
+    it("should give y-coordinate of start point when line is parallel to Y-axis", () => {
+      const point1 = new Point(1, 3);
+      const point2 = new Point(1, 7);
+      const line = new Line(point1, point2);
+      const actual = line.findY(1);
       const expected = 3;
       assert.strictEqual(actual, expected);
     });
