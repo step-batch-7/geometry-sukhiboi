@@ -4,13 +4,6 @@ const arePointsEqual = function(point1, point2) {
   return areXcoordinatesEqual && areYcoordinatesEqual;
 };
 
-const calculateSlope = function(line) {
-  const diffOfXCoordinates = line.end.x - line.start.x;
-  const diffOfYCoordinates = line.end.y - line.start.y;
-  const slope = diffOfYCoordinates / diffOfXCoordinates;
-  return slope;
-};
-
 class Line {
   constructor(start, end) {
     this.start = {
@@ -50,14 +43,18 @@ class Line {
   }
 
   isParallelTo(otherLine) {
-    const slopeOfThisLine = calculateSlope(this);
-    const slopeOfOtherLine = calculateSlope(otherLine);
+    const slopeOfThisLine = this.slope;
+    const slopeOfOtherLine = otherLine.slope;
     const areLinesParallel = slopeOfThisLine == slopeOfOtherLine;
     return areLinesParallel;
   }
 
   get slope() {
-    return calculateSlope(this);
+    const diffOfXCoordinates = this.end.x - this.start.x;
+    const diffOfYCoordinates = this.end.y - this.start.y;
+    const slope = diffOfYCoordinates / diffOfXCoordinates;
+    if (slope === Infinity) return undefined;
+    return slope;
   }
 }
 
