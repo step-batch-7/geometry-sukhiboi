@@ -220,12 +220,15 @@ describe("Line", () => {
       const point2 = new Point(12, 8);
       const line = new Line(point1, point2);
       const actual = line.split();
-      const firstHalfX = new Point(6, 4);
-      const firstHalfY = new Point(9, 6);
-      const firstHalf = new Line(firstHalfX, firstHalfY);
-      const secondHalfX = new Point(9, 6);
-      const secondHalfY = new Point(12, 8);
-      const secondHalf = new Line(secondHalfX, secondHalfY);
+
+      const firstHalfPoint1 = new Point(6, 4);
+      const firstHalfYPoint2 = new Point(9, 6);
+      const firstHalf = new Line(firstHalfPoint1, firstHalfYPoint2);
+
+      const secondHalfPoint1 = new Point(9, 6);
+      const secondHalfPoint2 = new Point(12, 8);
+      const secondHalf = new Line(secondHalfPoint1, secondHalfPoint2);
+      
       const expected = [firstHalf, secondHalf];
       assert.deepStrictEqual(actual, expected);
     });
