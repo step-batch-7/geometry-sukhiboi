@@ -172,4 +172,15 @@ describe("Line", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("#findY()", () => {
+    it("should give the y-coordinate when given x-coordinate lies on the given line segment", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(4, 4);
+      const line = new Line(point1, point2);
+      const actual = line.findY(3);
+      const expected = 3;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });

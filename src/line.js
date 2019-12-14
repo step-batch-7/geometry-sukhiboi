@@ -66,6 +66,12 @@ class Line {
     const xCoordinate = ((yCoordinate - this.start.y) / slope) + this.start.x;
     return xCoordinate;
   }
+
+  findY(xCoordinate) {
+    const slope = this.slope;
+    const yCoordinate = ((xCoordinate - this.start.x) / slope) + this.start.y;
+    return yCoordinate;
+  }
 }
 
 module.exports = { Line };
