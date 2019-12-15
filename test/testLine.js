@@ -233,4 +233,31 @@ describe("Line", () => {
       assert.deepStrictEqual(actual, expected);
     });
   });
+
+  describe("#hasPoint()", () => {
+    it("should return true when the given point lies on the given line", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(5, 5);
+      const line = new Line(point1, point2);
+      const point3 = new Point(2, 2);
+      const actual = line.hasPoint(point3);
+      assert.isOk(actual);
+    });
+    it("should return false when the given point doesn't lies on the given line", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(5, 5);
+      const line = new Line(point1, point2);
+      const point3 = new Point(7, 7);
+      const actual = line.hasPoint(point3);
+      assert.isNotOk(actual);
+    });
+    it("should invalidate when other type of object is give", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(5, 5);
+      const line = new Line(point1, point2);
+      const point3 = {};
+      const actual = line.hasPoint(point3);
+      assert.isNotOk(actual);
+    });
+  });
 });

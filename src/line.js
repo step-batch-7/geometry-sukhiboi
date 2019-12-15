@@ -78,13 +78,21 @@ class Line {
     const yCoordinate = (xCoordinate - this.start.x) / slope + this.start.y;
     return yCoordinate;
   }
+
   split() {
     const sumOfXCoordinates = this.start.x + this.end.x;
     const sumOfYCoordinates = this.start.y + this.end.y;
-    const midPoint = new Point(sumOfXCoordinates/2, sumOfYCoordinates/2);
+    const midPoint = new Point(sumOfXCoordinates / 2, sumOfYCoordinates / 2);
     const firstHalf = new Line(this.start, midPoint);
     const secondHalf = new Line(midPoint, this.end);
     return [firstHalf, secondHalf];
+  }
+
+  hasPoint(point) {
+    if (!(point instanceof Point)) return false;
+    const checkWithXcoordinate = this.findX(point.y) == point.x;
+    const checkWithYcoordinate = this.findY(point.x) == point.y;
+    return checkWithXcoordinate || checkWithYcoordinate;
   }
 }
 
