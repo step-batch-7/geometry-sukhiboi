@@ -54,6 +54,17 @@ describe("Line", () => {
       const actual = line.isEqualTo(line);
       assert.isOk(actual);
     });
+
+    it("should validate when equal lines are given with altered start and end", () => {
+      const pointa1 = new Point(2, 3);
+      const pointa2 = new Point(5, 8);
+      const line1 = new Line(pointa1, pointa2);
+      const pointb1 = new Point(5, 8);
+      const pointb2 = new Point(2, 3);
+      const line2 = new Line(pointb1, pointb2);
+      const actual = line1.isEqualTo(line2);
+      assert.isOk(actual);
+    });
   });
 
   describe("#length", () => {

@@ -16,8 +16,13 @@ class Line {
     if (this === otherLine) return true;
     if (!(otherLine instanceof Line)) return false;
 
-    const areStartingPointsEqual = this.start.isEqualTo(otherLine.start);
-    const areEndingPointsEqual = this.end.isEqualTo(otherLine.end);
+    const areStartingPointsEqual =
+      this.start.isEqualTo(otherLine.start) ||
+      this.start.isEqualTo(otherLine.end);
+    const areEndingPointsEqual =
+      this.end.isEqualTo(otherLine.end) || 
+      this.end.isEqualTo(otherLine.start);
+      
     const areLinesEqual = areStartingPointsEqual && areEndingPointsEqual;
     return areLinesEqual;
   }
