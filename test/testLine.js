@@ -228,7 +228,7 @@ describe("Line", () => {
       const secondHalfPoint1 = new Point(9, 6);
       const secondHalfPoint2 = new Point(12, 8);
       const secondHalf = new Line(secondHalfPoint1, secondHalfPoint2);
-      
+
       const expected = [firstHalf, secondHalf];
       assert.deepStrictEqual(actual, expected);
     });
@@ -258,6 +258,18 @@ describe("Line", () => {
       const point3 = {};
       const actual = line.hasPoint(point3);
       assert.isNotOk(actual);
+    });
+  });
+
+  describe("#findPointFromStart()", () => {
+    it("should return a point which is given distance away from the start point", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(7, 9);
+      const line = new Line(point1, point2);
+      const distance = 5;
+      const actual = line.findPointFromStart(distance);
+      const expected = new Point(4, 5);
+      assert.deepStrictEqual(actual, expected);
     });
   });
 });

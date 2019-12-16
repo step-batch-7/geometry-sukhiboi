@@ -93,6 +93,16 @@ class Line {
     const checkWithYcoordinate = this.findY(point.x) == point.y;
     return checkWithXcoordinate || checkWithYcoordinate;
   }
+
+  findPointFromStart(distance) {
+    const lengthOfLine = this.length;
+    const distanceRatio = distance / lengthOfLine;
+    const xCoordinate =
+      (1 - distanceRatio) * this.start.x + distanceRatio * this.end.x;
+    const yCoordinate =
+      (1 - distanceRatio) * this.start.y + distanceRatio * this.end.y;
+    return new Point(xCoordinate, yCoordinate);
+  }
 }
 
 module.exports = { Line };
