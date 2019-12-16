@@ -12,6 +12,19 @@ class Circle {
     const radius = `radius ${this.radius}`;
     return `[Circle ${centre} ${radius}]`;
   }
+
+  isEqualTo(otherCircle) {
+    if (this === otherCircle) return true;
+    if (!(otherCircle instanceof Circle)) return false;
+
+    const isXcoordinateOfCentreEqual = this.centre.x == otherCircle.centre.x;
+    const isYcoordinateOfCentreEqual = this.centre.y == otherCircle.centre.y;
+    const isCentreEqual = isXcoordinateOfCentreEqual && isYcoordinateOfCentreEqual;
+    const isRadiusEqual = this.radius == otherCircle.radius;
+    const areCirclesEqual = isCentreEqual && isRadiusEqual;
+    
+    return areCirclesEqual;
+  }
 }
 
 module.exports = Circle;
