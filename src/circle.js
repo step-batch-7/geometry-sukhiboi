@@ -1,9 +1,8 @@
+const Point = require("./point");
+
 class Circle {
   constructor(centre, radius) {
-    this.centre = {
-      x: centre.x,
-      y: centre.y
-    };
+    this.centre = new Point(centre.x, centre.y);
     this.radius = radius;
   }
 
@@ -17,13 +16,17 @@ class Circle {
     if (this === otherCircle) return true;
     if (!(otherCircle instanceof Circle)) return false;
 
-    const isXcoordinateOfCentreEqual = this.centre.x == otherCircle.centre.x;
-    const isYcoordinateOfCentreEqual = this.centre.y == otherCircle.centre.y;
-    const isCentreEqual = isXcoordinateOfCentreEqual && isYcoordinateOfCentreEqual;
-    const isRadiusEqual = this.radius == otherCircle.radius;
-    const areCirclesEqual = isCentreEqual && isRadiusEqual;
-    
-    return areCirclesEqual;
+    const areCentresEqual = this.centre.isEqualTo(otherCircle.centre);
+    const areRadiiEqual = this.radius == otherCircle.radius;
+
+    return areCentresEqual && areRadiiEqual;
+  }
+
+  get area(){
+    const pi = Math.PI;
+    const radiusSquare = Math.pow(this.radius, 2);
+    const area = pi * radiusSquare;
+    return area;
   }
 }
 

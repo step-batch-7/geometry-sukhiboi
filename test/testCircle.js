@@ -71,4 +71,24 @@ describe("circle", () => {
       assert.isOk(actual);
     });
   });
+
+  describe("#area", () => {
+    it("should return the area of circle", () => {
+      const centre = new Point(3, 4);
+      const radius = 2.3939;
+      const circle = new Circle(centre, radius);
+      const actual = circle.area;
+      const expected = 18;
+      assert.approximately(actual, expected, 0.1);
+    });
+
+    it("should return 0 when the area of circle is 0", () => {
+      const centre = new Point(3, 4);
+      const radius = 0;
+      const circle = new Circle(centre, radius);
+      const actual = circle.area;
+      const expected = 0;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });
