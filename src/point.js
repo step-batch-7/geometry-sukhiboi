@@ -11,10 +11,8 @@ class Point {
   isEqualTo(otherPoint) {
     if (this === otherPoint) return true;
     if (!(otherPoint instanceof Point)) return false;
-
     const areXcoordinatesEqual = this.x == otherPoint.x;
     const areYcoordinatesEqual = this.y == otherPoint.y;
-
     return areXcoordinatesEqual && areYcoordinatesEqual;
   }
 
@@ -23,8 +21,8 @@ class Point {
   }
 
   clone() {
-    const newPoint = new Point(this.x, this.y);
-    return newPoint;
+    const clonedPoint = new Point(this.x, this.y);
+    return clonedPoint;
   }
 
   findDistanceTo(point) {
@@ -38,4 +36,4 @@ class Point {
   }
 }
 
-module.exports = { Point };
+module.exports = Point;

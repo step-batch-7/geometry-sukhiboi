@@ -1,5 +1,5 @@
 const assert = require("chai").assert;
-const { Point } = require("../src/point");
+const Point = require("../src/point");
 
 describe("Point", () => {
   describe("#toString()", () => {
@@ -24,6 +24,7 @@ describe("Point", () => {
       const actual = point1.isEqualTo(point2);
       assert.isOk(actual);
     });
+
     it("should invalidate two different points", () => {
       const xCoordinateOfP1 = 2;
       const yCoordinateOfP1 = 3;
@@ -34,6 +35,7 @@ describe("Point", () => {
       const actual = point1.isEqualTo(point2);
       assert.isNotOk(actual);
     });
+
     it("should invalidate when other type of object is compared", () => {
       const xCoordinateOfP1 = 2;
       const yCoordinateOfP1 = 3;
@@ -42,6 +44,7 @@ describe("Point", () => {
       const actual = point1.isEqualTo(point2);
       assert.isNotOk(actual);
     });
+
     it("should validate when the given object is being compared by itself", () => {
       const xCoordinate = 2;
       const yCoordinate = 3;
@@ -60,6 +63,7 @@ describe("Point", () => {
       const expected = 5;
       assert.strictEqual(actual, expected);
     });
+
     it("should evaluate multiplication of coordinates when multiply function is given", function() {
       const xCoordinate = 5;
       const yCoordinate = 3;
@@ -69,7 +73,7 @@ describe("Point", () => {
       assert.strictEqual(actual, expected);
     });
   });
-  
+
   describe("#clone()", () => {
     it("should give Point object with same coordinates as given", () => {
       const xCoordinate = 2;
@@ -78,8 +82,8 @@ describe("Point", () => {
       const point2 = point1.clone();
       assert.notStrictEqual(point1, point2);
       assert.deepStrictEqual(point1, point2);
-
     });
+
   });
 
   describe("#findDistanceTo()", () => {
@@ -90,6 +94,7 @@ describe("Point", () => {
       const expected = 6;
       assert.strictEqual(actual, expected);
     });
+
     it("should return the distance between 2 negative points", () => {
       const point1 = new Point(-7, -4);
       const point2 = new Point(-7, -9);
@@ -97,15 +102,17 @@ describe("Point", () => {
       const expected = 5;
       assert.strictEqual(actual, expected);
     });
+
     it("should return NaN when the object is not a Point", () => {
       const point1 = new Point(1, 2);
       const point2 = {};
       const actual = point1.findDistanceTo(point2);
       assert.isNaN(actual);
     });
+    
     it("should return the distance when both points are equal", () => {
       const point1 = new Point(1, 2);
-      const point2 = new Point(1,2);
+      const point2 = new Point(1, 2);
       const actual = point1.findDistanceTo(point2);
       const expected = 0;
       assert.strictEqual(actual, expected);

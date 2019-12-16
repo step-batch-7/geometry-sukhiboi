@@ -1,26 +1,26 @@
 const assert = require("chai").assert;
-const { Line } = require("../src/line");
-const { Point } = require("../src/point");
+const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", () => {
   describe("#toString()", () => {
     it("should give properties of the line", () => {
-      const point1 = { x: 2, y: 5 };
-      const point2 = { x: 4, y: 6 };
+      const point1 = new Point(2, 5);
+      const point2 = new Point(4, 6);
       const line = new Line(point1, point2);
       const actual = line.toString();
-      const expected = "[Line (2, 5) to (4, 6)]";
+      const expected = "[Line (2,5) to (4,6)]";
       assert.strictEqual(actual, expected);
     });
   });
 
   describe("#isEqualTo()", () => {
     it("should validate two equal lines", () => {
-      const pointa1 = { x: 2, y: 3 };
-      const pointa2 = { x: 5, y: 8 };
+      const pointa1 = new Point(2, 3);
+      const pointa2 = new Point(5, 8);
       const line1 = new Line(pointa1, pointa2);
-      const pointb1 = { x: 2, y: 3 };
-      const pointb2 = { x: 5, y: 8 };
+      const pointb1 = new Point(2, 3);
+      const pointb2 = new Point(5, 8);
       const line2 = new Line(pointb1, pointb2);
       const actual = line1.isEqualTo(line2);
       const expected = true;
@@ -28,28 +28,28 @@ describe("Line", () => {
     });
 
     it("should invalidate two different lines", () => {
-      const pointa1 = { x: 2, y: 3 };
-      const pointa2 = { x: 5, y: 8 };
+      const pointa1 = new Point(2, 3);
+      const pointa2 = new Point(5, 8);
       const line1 = new Line(pointa1, pointa2);
-      const pointb1 = { x: 5, y: 4 };
-      const pointb2 = { x: 8, y: 5 };
+      const pointb1 = new Point(5, 4);
+      const pointb2 = new Point(8, 5);
       const line2 = new Line(pointb1, pointb2);
       const actual = line1.isEqualTo(line2);
       assert.isNotOk(actual);
     });
 
     it("should invalidate when other type of object is compared", () => {
-      const pointa1 = { x: 2, y: 3 };
-      const pointa2 = { x: 5, y: 8 };
-      const line1 = new Line(pointa1, pointa2);
+      const point1 = new Point(2, 3);
+      const point2 = new Point(5, 8);
+      const line1 = new Line(point1, point2);
       const line2 = {};
       const actual = line1.isEqualTo(line2);
       assert.isNotOk(actual);
     });
 
     it("should validate when the given object is being compared by itself", () => {
-      const point1 = { x: 2, y: 3 };
-      const point2 = { x: 5, y: 8 };
+      const point1 = new Point(2, 3);
+      const point2 = new Point(5, 8);
       const line = new Line(point1, point2);
       const actual = line.isEqualTo(line);
       assert.isOk(actual);
@@ -58,32 +58,35 @@ describe("Line", () => {
 
   describe("#length", () => {
     it("should calculate the length of line having different start and end point", () => {
-      const point1 = { x: 1, y: 1 };
-      const point2 = { x: 4, y: 5 };
+      const point1 = new Point(1, 1);
+      const point2 = new Point(4, 5);
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 5;
       assert.strictEqual(actual, expected);
     });
+
     it("should calculate the length of line having different start and end point when the points are negative", () => {
-      const point1 = { x: -2, y: -2 };
-      const point2 = { x: 1, y: 2 };
+      const point1 = new Point(-2, -2);
+      const point2 = new Point(1, 2);
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 5;
       assert.strictEqual(actual, expected);
     });
+
     it("should calculate the length of line when both points are on X-axis", () => {
-      const point1 = { x: 0, y: 1 };
-      const point2 = { x: 0, y: -1 };
+      const point1 = new Point(0, 1);
+      const point2 = new Point(0, -1);
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 2;
       assert.strictEqual(actual, expected);
     });
+
     it("should calculate the length of line when both points are on Y-axis", () => {
-      const point1 = { x: 1, y: 0 };
-      const point2 = { x: -1, y: 0 };
+      const point1 = new Point(1, 0);
+      const point2 = new Point(-1, 0);
       const line = new Line(point1, point2);
       const actual = line.length;
       const expected = 2;
@@ -93,31 +96,33 @@ describe("Line", () => {
 
   describe("#isParallelTo()", () => {
     it("should validate when two lines are parallel", () => {
-      const pointa1 = { x: 10, y: 15 };
-      const pointa2 = { x: 40, y: 30 };
+      const pointa1 = new Point(10, 15);
+      const pointa2 = new Point(40, 30);
       const line1 = new Line(pointa1, pointa2);
-      const pointb1 = { x: 10, y: 5 };
-      const pointb2 = { x: 50, y: 25 };
+      const pointb1 = new Point(10, 5);
+      const pointb2 = new Point(50, 25);
       const line2 = new Line(pointb1, pointb2);
       const actual = line1.isParallelTo(line2);
       assert.isOk(actual);
     });
+
     it("should invalidate when two lines are not parallel", () => {
-      const pointa1 = { x: 10, y: -15 };
-      const pointa2 = { x: -40, y: 30 };
+      const pointa1 = new Point(10, -15);
+      const pointa2 = new Point(-40, 30);
       const line1 = new Line(pointa1, pointa2);
-      const pointb1 = { x: 10, y: 5 };
-      const pointb2 = { x: 50, y: 25 };
+      const pointb1 = new Point(10, 5);
+      const pointb2 = new Point(50, 25);
       const line2 = new Line(pointb1, pointb2);
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);
     });
+
     it("should invalidate when two lines are overlapping", () => {
-      const pointa1 = { x: 0, y: 6 };
-      const pointa2 = { x: 6, y: 6 };
+      const pointa1 = new Point(0, 6);
+      const pointa2 = new Point(6, 6);
       const line1 = new Line(pointa1, pointa2);
-      const pointb1 = { x: 5, y: 6 };
-      const pointb2 = { x: 9, y: 6 };
+      const pointb1 = new Point(5, 6);
+      const pointb2 = new Point(9, 6);
       const line2 = new Line(pointb1, pointb2);
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);
@@ -126,8 +131,8 @@ describe("Line", () => {
 
   describe("#slope", () => {
     it("should calculate the slope of line with different start and end point", () => {
-      const point1 = { x: 3, y: 1 };
-      const point2 = { x: 4, y: 5 };
+      const point1 = new Point(3, 1)
+      const point2 = new Point(4, 5)
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = 4;
@@ -135,8 +140,8 @@ describe("Line", () => {
     });
 
     it("should calculate the slope of line with different start and end point when both are negative", () => {
-      const point1 = { x: -7, y: -4 };
-      const point2 = { x: -3, y: -8 };
+      const point1 = new Point(-7, -4)
+      const point2 = new Point(-3, -8)
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = -1;
@@ -144,8 +149,8 @@ describe("Line", () => {
     });
 
     it("should calculate the slope of line parallel to X-axis", () => {
-      const point1 = { x: 1, y: 1 };
-      const point2 = { x: 6, y: 1 };
+      const point1 = new Point(1, 1);
+      const point2 = new Point(6, 1);
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = 0;
@@ -153,8 +158,8 @@ describe("Line", () => {
     });
 
     it("should calculate the slope of line parallel to Y-axis", () => {
-      const point1 = { x: 0, y: 1 };
-      const point2 = { x: 0, y: 3 };
+      const point1 = new Point(0, 1);
+      const point2 = new Point(0, 3);
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = undefined;
@@ -171,6 +176,7 @@ describe("Line", () => {
       const expected = 2;
       assert.strictEqual(actual, expected);
     });
+
     it("should give NaN when given y-coordinate doesn't lies on the given line segment", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(3, 3);
@@ -178,6 +184,7 @@ describe("Line", () => {
       const actual = line.findX(7);
       assert.isNaN(actual);
     });
+
     it("should give x-coordinate of start point when line is parallel to X-axis", () => {
       const point1 = new Point(3, 1);
       const point2 = new Point(6, 1);
@@ -197,6 +204,7 @@ describe("Line", () => {
       const expected = 3;
       assert.strictEqual(actual, expected);
     });
+
     it("should give NaN when given x-coordinate doesn't lies on the given line segment", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(4, 4);
@@ -204,6 +212,7 @@ describe("Line", () => {
       const actual = line.findY(9);
       assert.isNaN(actual);
     });
+
     it("should give y-coordinate of start point when line is parallel to Y-axis", () => {
       const point1 = new Point(1, 3);
       const point2 = new Point(1, 7);
@@ -243,6 +252,7 @@ describe("Line", () => {
       const actual = line.hasPoint(point3);
       assert.isOk(actual);
     });
+
     it("should return false when the given point doesn't lies on the given line", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(5, 5);
@@ -251,6 +261,7 @@ describe("Line", () => {
       const actual = line.hasPoint(point3);
       assert.isNotOk(actual);
     });
+    
     it("should invalidate when other type of object is give", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(5, 5);
@@ -271,6 +282,15 @@ describe("Line", () => {
       const expected = new Point(4, 5);
       assert.deepStrictEqual(actual, expected);
     });
+
+    it("should return null when given distance is a string", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(7, 9);
+      const line = new Line(point1, point2);
+      const distance = "dfg";
+      const actual = line.findPointFromStart(distance);
+      assert.isNull(actual);
+    });
   });
 
   describe("#findPointFromEnd()", () => {
@@ -282,6 +302,15 @@ describe("Line", () => {
       const actual = line.findPointFromEnd(distance);
       const expected = new Point(4, 5);
       assert.deepStrictEqual(actual, expected);
+    });
+
+    it("should return null when given distance is a string", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(7, 9);
+      const line = new Line(point1, point2);
+      const distance = "dfg";
+      const actual = line.findPointFromStart(distance);
+      assert.isNull(actual);
     });
   });
 });

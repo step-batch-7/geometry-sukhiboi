@@ -1,4 +1,4 @@
-const { Point } = require("./point");
+const Point = require("./point");
 
 const arePointsEqual = function(point1, point2) {
   const areXcoordinatesEqual = point1.x === point2.x;
@@ -8,19 +8,13 @@ const arePointsEqual = function(point1, point2) {
 
 class Line {
   constructor(start, end) {
-    this.start = {
-      x: start.x,
-      y: start.y
-    };
-    this.end = {
-      x: end.x,
-      y: end.y
-    };
+    this.start = new Point(start.x, start.y);
+    this.end = new Point(end.x, end.y);
   }
 
   toString() {
-    const startingPoint = `(${this.start.x}, ${this.start.y})`;
-    const endingPoint = `(${this.end.x}, ${this.end.y})`;
+    const startingPoint = `(${this.start.x},${this.start.y})`;
+    const endingPoint = `(${this.end.x},${this.end.y})`;
     return `[Line ${startingPoint} to ${endingPoint}]`;
   }
 
@@ -95,6 +89,8 @@ class Line {
   }
 
   findPointFromStart(distance) {
+    const typeOfDistance = typeof distance;
+    if(!(typeOfDistance == "number")) return null;
     const lengthOfLine = this.length;
     const distanceRatio = distance / lengthOfLine;
     const xCoordinate =
@@ -111,4 +107,4 @@ class Line {
   }
 }
 
-module.exports = { Line };
+module.exports = Line;
