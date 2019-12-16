@@ -28,9 +28,22 @@ describe("circle", () => {
       assert.isOk(actual);
     });
 
-    it("should invalidate two equal circles", () => {
+    it("should invalidate when the one circle's radius is different form other's", () => {
       const centre1 = new Point(3, 5);
       const radius1 = 4;
+      const circle1 = new Circle(centre1, radius1);
+
+      const centre2 = new Point(3, 5);
+      const radius2 = 6;
+      const circle2 = new Circle(centre2, radius2);
+
+      const actual = circle1.isEqualTo(circle2);
+      assert.isNotOk(actual);
+    });
+
+    it("should invalidate when the one circle's centre is different form other's", () => {
+      const centre1 = new Point(4, 5);
+      const radius1 = 6;
       const circle1 = new Circle(centre1, radius1);
 
       const centre2 = new Point(3, 5);
