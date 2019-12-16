@@ -1,5 +1,11 @@
 const Point = require("./point");
 
+const arePointsCollinear = function(point1, point2, point3) {
+  const line1 = new Line(point1, point2);
+  const line2 = new Line(point2, point3);
+  return line1.slope == line2.slope;
+};
+
 class Line {
   constructor(start, end) {
     this.start = new Point(start.x, start.y);
@@ -20,9 +26,8 @@ class Line {
       this.start.isEqualTo(otherLine.start) ||
       this.start.isEqualTo(otherLine.end);
     const areEndingPointsEqual =
-      this.end.isEqualTo(otherLine.end) || 
-      this.end.isEqualTo(otherLine.start);
-      
+      this.end.isEqualTo(otherLine.end) || this.end.isEqualTo(otherLine.start);
+
     const areLinesEqual = areStartingPointsEqual && areEndingPointsEqual;
     return areLinesEqual;
   }
@@ -33,14 +38,8 @@ class Line {
   }
 
   isParallelTo(otherLine) {
-    const slopeOfThisLine = this.slope;
-    const slopeOfOtherLine = otherLine.slope;
-    const areLinesParallel = slopeOfThisLine == slopeOfOtherLine;
-    const yInterceptOfThisLine = this.end.y - slopeOfThisLine * this.end.x;
-    const yInterceptOfOtherLine =
-      otherLine.end.y - slopeOfOtherLine * otherLine.end.x;
-    if (yInterceptOfThisLine == yInterceptOfOtherLine) return false;
-    return areLinesParallel;
+    if (arePointsCollinear(this.start, this.end, otherLine.start)) return false;
+    return this.slope == otherLine.slope;
   }
 
   get slope() {

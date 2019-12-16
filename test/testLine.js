@@ -138,12 +138,23 @@ describe("Line", () => {
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);
     });
+
+    it("should invalidate for two different segments of y-axis", () => {
+      const point1 = new Point(0, 2);
+      const point2 = new Point(0, 4);
+      const line1 = new Line(point1, point2);
+      const point3 = new Point(0, 6);
+      const point4 = new Point(0, 8);
+      const line2 = new Line(point3, point4);
+      const actual = line1.isParallelTo(line2);
+      assert.isNotOk(actual);
+    });
   });
 
   describe("#slope", () => {
     it("should calculate the slope of line with different start and end point", () => {
-      const point1 = new Point(3, 1)
-      const point2 = new Point(4, 5)
+      const point1 = new Point(3, 1);
+      const point2 = new Point(4, 5);
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = 4;
@@ -151,8 +162,8 @@ describe("Line", () => {
     });
 
     it("should calculate the slope of line with different start and end point when both are negative", () => {
-      const point1 = new Point(-7, -4)
-      const point2 = new Point(-3, -8)
+      const point1 = new Point(-7, -4);
+      const point2 = new Point(-3, -8);
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = -1;
@@ -272,7 +283,7 @@ describe("Line", () => {
       const actual = line.hasPoint(point3);
       assert.isNotOk(actual);
     });
-    
+
     it("should invalidate when other type of object is give", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(5, 5);
