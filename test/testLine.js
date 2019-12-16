@@ -262,12 +262,24 @@ describe("Line", () => {
   });
 
   describe("#findPointFromStart()", () => {
-    it("should return a point which is given distance away from the start point", () => {
+    it("should return a point which is given distance away from the start point of line", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(7, 9);
       const line = new Line(point1, point2);
       const distance = 5;
       const actual = line.findPointFromStart(distance);
+      const expected = new Point(4, 5);
+      assert.deepStrictEqual(actual, expected);
+    });
+  });
+
+  describe("#findPointFromEnd()", () => {
+    it("should return a point which is given distance away from the end point of the line", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(7, 9);
+      const line = new Line(point1, point2);
+      const distance = 5;
+      const actual = line.findPointFromEnd(distance);
       const expected = new Point(4, 5);
       assert.deepStrictEqual(actual, expected);
     });

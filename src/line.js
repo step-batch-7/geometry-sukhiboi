@@ -103,6 +103,12 @@ class Line {
       (1 - distanceRatio) * this.start.y + distanceRatio * this.end.y;
     return new Point(xCoordinate, yCoordinate);
   }
+
+  findPointFromEnd(distance) {
+    const line = new Line(this.end, this.start);
+    const point = line.findPointFromStart(distance);
+    return point;
+  }
 }
 
 module.exports = { Line };
