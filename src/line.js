@@ -23,11 +23,7 @@ class Line {
   }
 
   get length() {
-    const diffOfXCoordinates = this.end.x - this.start.x;
-    const diffOfYCoordinates = this.end.y - this.start.y;
-    const horizontalDistance = Math.pow(diffOfXCoordinates, 2);
-    const verticalDistance = Math.pow(diffOfYCoordinates, 2);
-    const length = Math.sqrt(horizontalDistance + verticalDistance);
+    const length = this.start.findDistanceTo(this.end);
     return length;
   }
 
@@ -84,7 +80,7 @@ class Line {
 
   findPointFromStart(distance) {
     const typeOfDistance = typeof distance;
-    if(!(typeOfDistance == "number")) return null;
+    if (!(typeOfDistance == "number")) return null;
     const lengthOfLine = this.length;
     const distanceRatio = distance / lengthOfLine;
     const xCoordinate =
