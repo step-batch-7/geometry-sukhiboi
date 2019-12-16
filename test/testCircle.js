@@ -91,4 +91,16 @@ describe("circle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("#perimeter", () => {
+    it("should return the perimeter of the circle", () => {
+      const centre = new Point(3, 4);
+      const radius = 2.387;
+      const circle = new Circle(centre, radius);
+      const actual = circle.perimeter;
+      const expected = 15;
+      assert.approximately(actual, expected, 0.1);
+    });
+  });
+
 });

@@ -28,6 +28,12 @@ class Circle {
     const area = pi * radiusSquare;
     return area;
   }
+
+  get perimeter() {
+    const pi = Math.PI;
+    const peri = 2 * pi * this.radius;
+    return peri;
+  }
 }
 
 module.exports = Circle;
