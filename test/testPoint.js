@@ -81,4 +81,34 @@ describe("Point", () => {
 
     });
   });
+
+  describe("#findDistanceTo()", () => {
+    it("should return the distance between 2 positive points", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(7, 2);
+      const actual = point1.findDistanceTo(point2);
+      const expected = 6;
+      assert.strictEqual(actual, expected);
+    });
+    it("should return the distance between 2 negative points", () => {
+      const point1 = new Point(-7, -4);
+      const point2 = new Point(-7, -9);
+      const actual = point1.findDistanceTo(point2);
+      const expected = 5;
+      assert.strictEqual(actual, expected);
+    });
+    it("should return NaN when the object is not a Point", () => {
+      const point1 = new Point(1, 2);
+      const point2 = {};
+      const actual = point1.findDistanceTo(point2);
+      assert.isNaN(actual);
+    });
+    it("should return the distance when both points are equal", () => {
+      const point1 = new Point(1, 2);
+      const point2 = new Point(1,2);
+      const actual = point1.findDistanceTo(point2);
+      const expected = 0;
+      assert.strictEqual(actual, expected);
+    });
+  });
 });

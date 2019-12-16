@@ -7,7 +7,7 @@ class Point {
   toString() {
     return `[Point @(${this.x},${this.y})]`;
   }
-  
+
   isEqualTo(otherPoint) {
     if (this === otherPoint) return true;
     if (!(otherPoint instanceof Point)) return false;
@@ -25,6 +25,16 @@ class Point {
   clone() {
     const newPoint = new Point(this.x, this.y);
     return newPoint;
+  }
+
+  findDistanceTo(point) {
+    if (!(point instanceof Point)) return NaN;
+    const diffOfXCoordinates = point.x - this.x;
+    const diffOfYCoordinates = point.y - this.y;
+    const horizontalDistance = Math.pow(diffOfXCoordinates, 2);
+    const verticalDistance = Math.pow(diffOfYCoordinates, 2);
+    const length = Math.sqrt(horizontalDistance + verticalDistance);
+    return length;
   }
 }
 
