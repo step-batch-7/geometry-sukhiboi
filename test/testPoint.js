@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Point = require("../src/point");
+const Line = require("../src/line");
 
 describe("Point", () => {
   describe("#toString()", () => {
@@ -83,7 +84,6 @@ describe("Point", () => {
       assert.notStrictEqual(point1, point2);
       assert.deepStrictEqual(point1, point2);
     });
-
   });
 
   describe("#findDistanceTo()", () => {
@@ -109,13 +109,33 @@ describe("Point", () => {
       const actual = point1.findDistanceTo(point2);
       assert.isNaN(actual);
     });
-    
+
     it("should return the distance when both points are equal", () => {
       const point1 = new Point(1, 2);
       const point2 = new Point(1, 2);
       const actual = point1.findDistanceTo(point2);
       const expected = 0;
       assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("#isOn()", () => {
+    it("should return true if the point lies on the line", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(4, 4);
+      const line = new Line(point1, point2);
+      const point = new Point(3, 3);
+      const actual = point.isOn(line);
+      assert.ok(actual);
+    });
+
+    it("should return false if the point doesn't lie on the line", function() {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(4, 4);
+      const line = new Line(point1, point2);
+      const point = new Point(2, 3);
+      const actual = point.isOn(line);
+      assert.notOk(actual);
     });
   });
 });

@@ -34,6 +34,10 @@ class Point {
     const length = Math.sqrt(horizontalDistance + verticalDistance);
     return length;
   }
+
+  isOn(line) {
+    return line.hasPoint(this);
+  }
 }
 
 module.exports = Point;
