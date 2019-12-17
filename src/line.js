@@ -6,6 +6,15 @@ const arePointsCollinear = function(point1, point2, point3) {
   return line1.slope == line2.slope;
 };
 
+const isCoordinateInRange = function(abscissa, ordinate, coordinate) {
+  return (
+    coordinate >= ordinate &&
+    coordinate <= abscissa ||
+    coordinate <= ordinate &&
+    coordinate >= abscissa
+  );
+};
+
 class Line {
   constructor(start, end) {
     this.start = new Point(start.x, start.y);
@@ -51,7 +60,7 @@ class Line {
   }
 
   findX(yCoordinate) {
-    if (yCoordinate > this.end.y || yCoordinate < this.start.y) return NaN;
+    if (!isCoordinateInRange(this.start.y, this.end.y, yCoordinate)) return NaN;
     if (this.slope == undefined || this.slope == 0) return this.start.x;
     const slope = this.slope;
     const xCoordinate = (yCoordinate - this.start.y) / slope + this.start.x;
@@ -59,7 +68,7 @@ class Line {
   }
 
   findY(xCoordinate) {
-    if (xCoordinate > this.end.x || xCoordinate < this.start.x) return NaN;
+    if (!isCoordinateInRange(this.start.x, this.end.x, xCoordinate)) return NaN;
     if (this.slope == undefined || this.slope == 0) return this.start.y;
     const slope = this.slope;
     const yCoordinate = (xCoordinate - this.start.x) / slope + this.start.y;
@@ -85,7 +94,7 @@ class Line {
   findPointFromStart(distance) {
     const typeOfDistance = typeof distance;
     if (!(typeOfDistance == "number")) return null;
-    if(distance > this.length || distance < 0) return null;
+    if (distance > this.length || distance < 0) return null;
     const lengthOfLine = this.length;
     const distanceRatio = distance / lengthOfLine;
     const xCoordinate =

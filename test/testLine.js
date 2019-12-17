@@ -215,6 +215,15 @@ describe("Line", () => {
       const expected = 3;
       assert.strictEqual(actual, expected);
     });
+
+    it("should give x value for the given y if the y value has a corresponding x value on line", () => {
+      const point1 = new Point(-1, 3);
+      const point2 = new Point(3, -1);
+      const line = new Line(point1, point2);
+      const actual = line.findX(1);
+      const expected = 1;
+      assert.strictEqual(actual, expected);
+    });
   });
 
   describe("#findY()", () => {
@@ -241,6 +250,15 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.findY(1);
       const expected = 3;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should give y value for the given x if the x value has a corresponding y value on line", () => {
+      const point1 = new Point(-1, 3);
+      const point2 = new Point(3, -1);
+      const line = new Line(point1, point2);
+      const actual = line.findY(1);
+      const expected = 1;
       assert.strictEqual(actual, expected);
     });
   });
