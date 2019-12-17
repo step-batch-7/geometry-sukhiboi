@@ -199,7 +199,7 @@ describe("Line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give NaN when given y-coordinate doesn't lies on the given line segment", () => {
+    it("should give null when given y-coordinate doesn't lies on the given line segment", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(3, 3);
       const line = new Line(point1, point2);
@@ -227,7 +227,7 @@ describe("Line", () => {
       assert.strictEqual(actual, expected);
     });
 
-    it("should give NaN when given x-coordinate doesn't lies on the given line segment", () => {
+    it("should give null when given x-coordinate doesn't lies on the given line segment", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(4, 4);
       const line = new Line(point1, point2);
