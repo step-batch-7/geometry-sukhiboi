@@ -204,7 +204,7 @@ describe("Line", () => {
       const point2 = new Point(3, 3);
       const line = new Line(point1, point2);
       const actual = line.findX(7);
-      assert.isNull(actual);
+      assert.isNaN(actual);
     });
 
     it("should give x-coordinate of start point when line is parallel to X-axis", () => {
@@ -232,7 +232,7 @@ describe("Line", () => {
       const point2 = new Point(4, 4);
       const line = new Line(point1, point2);
       const actual = line.findY(9);
-      assert.isNull(actual);
+      assert.isNaN(actual);
     });
 
     it("should give y-coordinate of start point when line is parallel to Y-axis", () => {

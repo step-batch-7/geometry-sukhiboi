@@ -51,7 +51,7 @@ class Line {
   }
 
   findX(yCoordinate) {
-    if (yCoordinate > this.end.y || yCoordinate < this.start.y) return null;
+    if (yCoordinate > this.end.y || yCoordinate < this.start.y) return NaN;
     if (this.slope == 0) return this.start.x;
     const slope = this.slope;
     const xCoordinate = (yCoordinate - this.start.y) / slope + this.start.x;
@@ -59,7 +59,7 @@ class Line {
   }
 
   findY(xCoordinate) {
-    if (xCoordinate > this.end.x || xCoordinate < this.start.x) return null;
+    if (xCoordinate > this.end.x || xCoordinate < this.start.x) return NaN;
     if (this.slope == undefined) return this.start.y;
     const slope = this.slope;
     const yCoordinate = (xCoordinate - this.start.x) / slope + this.start.y;
