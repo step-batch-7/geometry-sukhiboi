@@ -94,4 +94,37 @@ describe("circle", () => {
     });
   });
 
+  describe("#hasPoint()", () => {
+    it("should return true when the given point lies on the given circle", () => {
+      const point1 = new Point(1, 1);
+      const circle = new Circle(point1, 5);
+      const point2 = new Point(1, 6);
+      const actual = circle.hasPoint(point2);
+      assert.isOk(actual);
+    });
+  });
+
+  it("should return false when the given point is outside the given circle", () => {
+    const point1 = new Point(1, 1);
+    const circle = new Circle(point1, 5);
+    const point2 = new Point(8, 6);
+    const actual = circle.hasPoint(point2);
+    assert.isNotOk(actual);
+  });
+
+  it("should return false when the given point is inside the given circle", () => {
+    const point1 = new Point(1, 1);
+    const circle = new Circle(point1, 5);
+    const point2 = new Point(3, 1);
+    const actual = circle.hasPoint(point2);
+    assert.isNotOk(actual);
+  });
+
+  it("should invalidate when other type of object is given", () => {
+    const point1 = new Point(1, 1);
+    const circle = new Circle(point1, 5);
+    const point2 = {};
+    const actual = circle.hasPoint(point2);
+    assert.isNotOk(actual);
+  });
 });

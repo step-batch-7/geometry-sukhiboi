@@ -20,12 +20,17 @@ class Circle {
     return areCentresEqual && areRadiiEqual;
   }
 
-  get area(){
+  get area() {
     return Math.PI * Math.pow(this.radius, 2);
   }
 
   get perimeter() {
     return 2 * Math.PI * this.radius;
+  }
+
+  hasPoint(point) {
+    if (!(point instanceof Point)) return false;
+    return this.radius === this.centre.findDistanceTo(point);
   }
 }
 

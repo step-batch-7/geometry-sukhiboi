@@ -33,8 +33,8 @@ class Point {
     return Math.sqrt(horizontalDistance + verticalDistance);
   }
 
-  isOn(line) {
-    return line.hasPoint(this);
+  isOn(shape) {
+    return shape.hasPoint(this);
   }
 }
 

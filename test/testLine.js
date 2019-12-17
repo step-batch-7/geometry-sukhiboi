@@ -302,7 +302,7 @@ describe("Line", () => {
       assert.isNotOk(actual);
     });
 
-    it("should invalidate when other type of object is give", () => {
+    it("should invalidate when other type of object is given", () => {
       const point1 = new Point(1, 1);
       const point2 = new Point(5, 5);
       const line = new Line(point1, point2);
