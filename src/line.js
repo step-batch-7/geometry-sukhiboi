@@ -51,7 +51,7 @@ class Line {
     const diffOfXCoordinates = this.end.x - this.start.x;
     const diffOfYCoordinates = this.end.y - this.start.y;
     const slope = diffOfYCoordinates / diffOfXCoordinates;
-    if (slope === Infinity) return undefined;
+    if ([Infinity, -Infinity].includes(slope)) return undefined;
     return slope;
   }
 

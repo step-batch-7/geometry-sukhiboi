@@ -163,5 +163,13 @@ describe("circle", () => {
       const actual = circle.covers(point2);
       assert.isOk(actual);
     });
+
+    it("should return false if the give object is a Point", () => {
+      const point1 = new Point(1, 1);
+      const circle = new Circle(point1, 5);
+      const point2 = {};
+      const actual = circle.covers(point2);
+      assert.isNotOk(actual);
+    });
   });
 });
