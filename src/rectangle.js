@@ -22,6 +22,11 @@ class Rectangle {
     const { length, breadth } = getDimensions(this.vertexA, this.vertexC);
     return Math.abs(length * breadth);
   }
+  
+  get perimeter() {
+    const { length, breadth } = getDimensions(this.vertexA, this.vertexC);
+    return Math.abs(2 * (length + breadth));
+  }
 }
 
 module.exports = Rectangle;

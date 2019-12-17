@@ -14,7 +14,7 @@ describe("Rectangle", () => {
     });
   });
 
-  describe("#area()", () => {
+  describe("#area", () => {
     it("should return the area of a rectangle", () => {
       const vertexA = new Point(9, 1);
       const vertexC = new Point(6, 6);
@@ -30,6 +30,26 @@ describe("Rectangle", () => {
       const rectangle = new Rectangle(vertexA, vertexC);
       const actual = rectangle.area;
       const expected = 18;
+      assert.strictEqual(actual, expected);
+    });
+  });
+
+  describe("#perimeter", () => {
+    it("should return the perimeter of the rectangle", () => {
+      const vertexA = new Point(9, 1);
+      const vertexC = new Point(6, 6);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const actual = rectangle.perimeter;
+      const expected = 16;
+      assert.strictEqual(actual, expected);
+    });
+
+    it("should return the perimeter of the rectangle if the points are negative", () => {
+      const vertexA = new Point(-7, -3);
+      const vertexC = new Point(-3, -6);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const actual = rectangle.perimeter;
+      const expected = 14;
       assert.strictEqual(actual, expected);
     });
   });
