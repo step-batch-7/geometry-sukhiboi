@@ -99,4 +99,69 @@ describe("Rectangle", () => {
       assert.isOk(actual);
     });
   });
+
+  describe("#hasPoint()", () => {
+    it("should return false when object is not of Point class", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(5, 4);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const point = {};
+      const actual = rectangle.hasPoint(point);
+      assert.isNotOk(actual);
+    });
+
+    it("should return true when point lies on the edge AB", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(5, 4);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const point = new Point(3, 4);
+      const actual = rectangle.hasPoint(point);
+      assert.isOk(actual);
+    });
+
+    it("should return true when point lies on the edge BC", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(5, 4);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const point = new Point(5, 3);
+      const actual = rectangle.hasPoint(point);
+      assert.isOk(actual);
+    });
+
+    it("should return true when point lies on the edge CD", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(5, 4);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const point = new Point(2, 1);
+      const actual = rectangle.hasPoint(point);
+      assert.isOk(actual);
+    });
+
+    it("should return true when point lies on the edge DA", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(5, 4);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const point = new Point(1, 2);
+      const actual = rectangle.hasPoint(point);
+      assert.isOk(actual);
+    });
+
+    it("should return false when point lies inside the rectangle", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(5, 4);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const point = new Point(2, 2);
+      const actual = rectangle.hasPoint(point);
+      assert.isNotOk(actual);
+    });
+
+    it("should return false when point lies outside the rectangle", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(5, 4);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const point = new Point(9, 9);
+      const actual = rectangle.hasPoint(point);
+      assert.isNotOk(actual);
+    });
+  });
 });
