@@ -149,6 +149,15 @@ describe("Line", () => {
       const actual = line1.isParallelTo(line2);
       assert.isNotOk(actual);
     });
+
+    it("should invalidate for if other type of object is compared", () => {
+      const point1 = new Point(0, 2);
+      const point2 = new Point(0, 4);
+      const line1 = new Line(point1, point2);
+      const line2 = {};
+      const actual = line1.isParallelTo(line2);
+      assert.isNotOk(actual);
+    });
   });
 
   describe("#slope", () => {
