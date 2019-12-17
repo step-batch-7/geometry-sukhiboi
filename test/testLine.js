@@ -292,6 +292,22 @@ describe("Line", () => {
       const actual = line.hasPoint(point3);
       assert.isNotOk(actual);
     });
+    it("should validate if the given point is on the line segment and the line is a horizontal line", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(5, 1);
+      const line = new Line(point1, point2);
+      const point3 = new Point(3, 1);
+      const actual = line.hasPoint(point3);
+      assert.isOk(actual);
+    });
+    it("should validate if the given point is on the line segment and the line is a vertical line", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(1, 5);
+      const line = new Line(point1, point2);
+      const point3 = new Point(1, 3);
+      const actual = line.hasPoint(point3);
+      assert.isOk(actual);
+    });
   });
 
   describe("#findPointFromStart()", () => {
