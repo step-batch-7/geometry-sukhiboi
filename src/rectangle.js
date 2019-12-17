@@ -1,5 +1,11 @@
 const Point = require("./point");
 
+const getDimensions = function(vertexA, vertexC) {
+  const length = vertexC.x - vertexA.x;
+  const breadth = vertexA.y - vertexC.y;
+  return { length, breadth };
+};
+
 class Rectangle {
   constructor(vertexA, vertexC) {
     this.vertexA = new Point(vertexA.x, vertexA.y);
@@ -13,8 +19,7 @@ class Rectangle {
   }
 
   get area() {
-    const length = this.vertexC.x - this.vertexA.x;
-    const breadth = this.vertexA.y - this.vertexC.y;
+    const { length, breadth } = getDimensions(this.vertexA, this.vertexC);
     return Math.abs(length * breadth);
   }
 }

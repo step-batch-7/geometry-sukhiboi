@@ -23,5 +23,14 @@ describe("Rectangle", () => {
       const expected = 15;
       assert.strictEqual(actual, expected);
     });
+
+    it("should return the area of a rectangle if the points are negative", () => {
+      const vertexA = new Point(-9, -5);
+      const vertexC = new Point(-3, -2);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const actual = rectangle.area;
+      const expected = 18;
+      assert.strictEqual(actual, expected);
+    });
   });
 });
