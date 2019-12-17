@@ -53,4 +53,50 @@ describe("Rectangle", () => {
       assert.strictEqual(actual, expected);
     });
   });
+
+  describe("#isEqualTo()", () => {
+    it("should return true if both rectangles are equal", () => {
+      const vertexA = new Point(7, 3);
+      const vertexC = new Point(3, 6);
+      const rectangle1 = new Rectangle(vertexA, vertexC);
+      const rectangle2 = new Rectangle(new Point(7, 3), new Point(3, 6));
+      const actual = rectangle1.isEqualTo(rectangle2);
+      assert.isOk(actual);
+    });
+
+    it("should return false if both rectangles are different", () => {
+      const vertexA = new Point(7, 3);
+      const vertexC = new Point(3, 6);
+      const rectangle1 = new Rectangle(vertexA, vertexC);
+      const rectangle2 = new Rectangle(new Point(7, 4), new Point(2, 9));
+      const actual = rectangle1.isEqualTo(rectangle2);
+      assert.isNotOk(actual);
+    });
+
+    it("should invalidate when other type of object is compared", () => {
+      const vertexA = new Point(7, 3);
+      const vertexC = new Point(3, 6);
+      const rectangle1 = new Rectangle(vertexA, vertexC);
+      const rectangle2 = {};
+      const actual = rectangle1.isEqualTo(rectangle2);
+      assert.isNotOk(actual);
+    });
+
+    it("should validate when the given object is being compared by itself", () => {
+      const vertexA = new Point(7, 3);
+      const vertexC = new Point(3, 6);
+      const rectangle = new Rectangle(vertexA, vertexC);
+      const actual = rectangle.isEqualTo(rectangle);
+      assert.isOk(actual);
+    });
+
+    it("should validate when we points of the diagonal altered", () => {
+      const vertexA = new Point(7, 3);
+      const vertexC = new Point(3, 6);
+      const rectangle1 = new Rectangle(vertexA, vertexC);
+      const rectangle2 = new Rectangle(new Point(3, 6), new Point(7, 3));
+      const actual = rectangle1.isEqualTo(rectangle2);
+      assert.isOk(actual);
+    });
+  });
 });
