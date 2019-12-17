@@ -15,24 +15,17 @@ class Circle {
   isEqualTo(otherCircle) {
     if (this === otherCircle) return true;
     if (!(otherCircle instanceof Circle)) return false;
-
     const areCentresEqual = this.centre.isEqualTo(otherCircle.centre);
     const areRadiiEqual = this.radius == otherCircle.radius;
-
     return areCentresEqual && areRadiiEqual;
   }
 
   get area(){
-    const pi = Math.PI;
-    const radiusSquare = Math.pow(this.radius, 2);
-    const area = pi * radiusSquare;
-    return area;
+    return Math.PI * Math.pow(this.radius, 2);
   }
 
   get perimeter() {
-    const pi = Math.PI;
-    const peri = 2 * pi * this.radius;
-    return peri;
+    return 2 * Math.PI * this.radius;
   }
 }
 

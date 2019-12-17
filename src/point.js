@@ -21,8 +21,7 @@ class Point {
   }
 
   clone() {
-    const clonedPoint = new Point(this.x, this.y);
-    return clonedPoint;
+    return new Point(this.x, this.y);
   }
 
   findDistanceTo(point) {
@@ -31,8 +30,7 @@ class Point {
     const diffOfYCoordinates = point.y - this.y;
     const horizontalDistance = Math.pow(diffOfXCoordinates, 2);
     const verticalDistance = Math.pow(diffOfYCoordinates, 2);
-    const length = Math.sqrt(horizontalDistance + verticalDistance);
-    return length;
+    return Math.sqrt(horizontalDistance + verticalDistance);
   }
 
   isOn(line) {

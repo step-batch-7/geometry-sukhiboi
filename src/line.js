@@ -6,12 +6,10 @@ const arePointsCollinear = function(point1, point2, point3) {
   return line1.slope == line2.slope;
 };
 
-const isCoordinateInRange = function(abscissa, ordinate, coordinate) {
+const isCoordinateInRange = function(coordinate1, coordinate2, coordinate3) {
   return (
-    coordinate >= ordinate &&
-    coordinate <= abscissa ||
-    coordinate <= ordinate &&
-    coordinate >= abscissa
+    (coordinate3 >= coordinate2 && coordinate3 <= coordinate1) ||
+    (coordinate3 <= coordinate2 && coordinate3 >= coordinate1)
   );
 };
 
@@ -30,13 +28,11 @@ class Line {
   isEqualTo(otherLine) {
     if (this === otherLine) return true;
     if (!(otherLine instanceof Line)) return false;
-
     const areStartingPointsEqual =
       this.start.isEqualTo(otherLine.start) ||
       this.start.isEqualTo(otherLine.end);
     const areEndingPointsEqual =
       this.end.isEqualTo(otherLine.end) || this.end.isEqualTo(otherLine.start);
-
     const areLinesEqual = areStartingPointsEqual && areEndingPointsEqual;
     return areLinesEqual;
   }
@@ -55,24 +51,20 @@ class Line {
     const diffOfXCoordinates = this.end.x - this.start.x;
     const diffOfYCoordinates = this.end.y - this.start.y;
     const slope = diffOfYCoordinates / diffOfXCoordinates;
-    if (slope === Infinity || slope === -Infinity) return undefined;
+    if (slope === Infinity) return undefined;
     return slope;
   }
 
-  findX(yCoordinate) {
-    if (!isCoordinateInRange(this.start.y, this.end.y, yCoordinate)) return NaN;
-    if (this.slope == undefined || this.slope == 0) return this.start.x;
-    const slope = this.slope;
-    const xCoordinate = (yCoordinate - this.start.y) / slope + this.start.x;
-    return xCoordinate;
+  findX(y) {
+    if (!isCoordinateInRange(this.start.y, this.end.y, y)) return NaN;
+    if ([undefined, 0].includes(this.slope)) return this.start.x;
+    return (y - this.start.y) / this.slope + this.start.x;
   }
 
-  findY(xCoordinate) {
-    if (!isCoordinateInRange(this.start.x, this.end.x, xCoordinate)) return NaN;
-    if (this.slope == undefined || this.slope == 0) return this.start.y;
-    const slope = this.slope;
-    const yCoordinate = (xCoordinate - this.start.x) / slope + this.start.y;
-    return yCoordinate;
+  findY(x) {
+    if (!isCoordinateInRange(this.start.x, this.end.x, x)) return NaN;
+    if ([undefined, 0].includes(this.slope)) return this.start.y;
+    return (x - this.start.x) / this.slope + this.start.y;
   }
 
   split() {
@@ -92,22 +84,17 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    const typeOfDistance = typeof distance;
-    if (!(typeOfDistance == "number")) return null;
+    if (!Number.isInteger(distance)) return null;
     if (distance > this.length || distance < 0) return null;
-    const lengthOfLine = this.length;
-    const distanceRatio = distance / lengthOfLine;
-    const xCoordinate =
-      (1 - distanceRatio) * this.start.x + distanceRatio * this.end.x;
-    const yCoordinate =
-      (1 - distanceRatio) * this.start.y + distanceRatio * this.end.y;
-    return new Point(xCoordinate, yCoordinate);
+    const distanceRatio = distance / this.length;
+    const x = (1 - distanceRatio) * this.start.x + distanceRatio * this.end.x;
+    const y = (1 - distanceRatio) * this.start.y + distanceRatio * this.end.y;
+    return new Point(x, y);
   }
 
   findPointFromEnd(distance) {
     const line = new Line(this.end, this.start);
-    const point = line.findPointFromStart(distance);
-    return point;
+    return line.findPointFromStart(distance);
   }
 }
 
