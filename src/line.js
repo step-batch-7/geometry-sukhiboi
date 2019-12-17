@@ -85,6 +85,7 @@ class Line {
   findPointFromStart(distance) {
     const typeOfDistance = typeof distance;
     if (!(typeOfDistance == "number")) return null;
+    if(distance > this.length) return null;
     const lengthOfLine = this.length;
     const distanceRatio = distance / lengthOfLine;
     const xCoordinate =

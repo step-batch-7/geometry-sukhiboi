@@ -329,6 +329,15 @@ describe("Line", () => {
       const actual = line.findPointFromStart(distance);
       assert.isNull(actual);
     });
+
+    it("should give null if given distance is greater than length", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(7, 9);
+      const line = new Line(point1, point2);
+      const distance = 20;
+      const actual = line.findPointFromStart(distance);
+      assert.isNull(actual);
+    });
   });
 
   describe("#findPointFromEnd()", () => {
@@ -347,6 +356,15 @@ describe("Line", () => {
       const point2 = new Point(7, 9);
       const line = new Line(point1, point2);
       const distance = "dfg";
+      const actual = line.findPointFromStart(distance);
+      assert.isNull(actual);
+    });
+    
+    it("should give null if given distance is greater than length", () => {
+      const point1 = new Point(1, 1);
+      const point2 = new Point(7, 9);
+      const line = new Line(point1, point2);
+      const distance = 20;
       const actual = line.findPointFromStart(distance);
       assert.isNull(actual);
     });
