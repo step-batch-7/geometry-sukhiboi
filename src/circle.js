@@ -32,6 +32,15 @@ class Circle {
     if (!(point instanceof Point)) return false;
     return this.radius === this.centre.findDistanceTo(point);
   }
+
+  moveTo(centre) {
+    return new Circle(centre, this.radius);
+  }
+
+  covers(point) {
+    if(!(point instanceof Point)) return false;
+    return this.centre.findDistanceTo(point) <= this.radius;
+  }
 }
 
 module.exports = Circle;
