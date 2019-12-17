@@ -13,6 +13,13 @@ const getOtherVertices = function(vertexA, vertexC) {
   return { vertexB, vertexD };
 };
 
+const isCoordinateInRange = function(coordinate1, coordinate2, coordinate3) {
+  return (
+    (coordinate3 >= coordinate2 && coordinate3 <= coordinate1) ||
+    (coordinate3 <= coordinate2 && coordinate3 >= coordinate1)
+  );
+};
+
 class Rectangle {
   constructor(vertexA, vertexC) {
     this.vertexA = new Point(vertexA.x, vertexA.y);
@@ -44,8 +51,8 @@ class Rectangle {
   }
 
   hasPoint(point) {
-    if(!(point instanceof Point)) return false;
-    const {vertexB, vertexD} = getOtherVertices(this.vertexA, this.vertexC);
+    if (!(point instanceof Point)) return false;
+    const { vertexB, vertexD } = getOtherVertices(this.vertexA, this.vertexC);
     const AB = new Line(this.vertexA, vertexB);
     const BC = new Line(vertexB, this.vertexC);
     const CD = new Line(this.vertexC, vertexD);
@@ -55,6 +62,14 @@ class Rectangle {
       BC.hasPoint(point) ||
       CD.hasPoint(point) ||
       DA.hasPoint(point)
+    );
+  }
+
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+    return (
+      isCoordinateInRange(this.vertexA.x, this.vertexC.x, point.x) &&
+      isCoordinateInRange(this.vertexA.y, this.vertexC.y, point.y)
     );
   }
 }
