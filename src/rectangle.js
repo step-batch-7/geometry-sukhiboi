@@ -15,7 +15,7 @@ class Rectangle {
   get area() {
     const length = this.vertexC.x - this.vertexA.x;
     const breadth = this.vertexA.y - this.vertexC.y;
-    return length * breadth;
+    return Math.abs(length * breadth);
   }
 }
 
