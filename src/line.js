@@ -69,7 +69,7 @@ class Line {
   findY(x) {
     if (!isCoordinateInRange(this.start.x, this.end.x, x)) return NaN;
     if ([undefined, 0].includes(this.slope)) return this.start.y;
-    return (x - this.start.x) / this.slope + this.start.y;
+    return this.slope * (x - this.start.x) + this.start.y;
   }
 
   split() {
