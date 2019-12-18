@@ -4,6 +4,7 @@ class Circle {
   constructor(centre, radius) {
     this.centre = new Point(centre.x, centre.y);
     this.radius = radius;
+    Object.freeze(this);
   }
 
   toString() {

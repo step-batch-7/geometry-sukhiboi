@@ -4,6 +4,18 @@ const Line = require("../src/line");
 const Circle = require("../src/circle");
 
 describe("Point", () => {
+
+  describe("#nonEditable", () => {
+    it("should not change the coordinates of point from outside", () => {
+      const point = new Point(5, 7);
+      point.x = 9;
+      point.y = 2;
+      const point1 = new Point(5, 7);
+      const actual = point.isEqualTo(point1);
+      assert.isOk(actual);
+    });
+  });
+
   describe("#toString()", () => {
     it("should give properties of the point", () => {
       const xCoordinate = 2;

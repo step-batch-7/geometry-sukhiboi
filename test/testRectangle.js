@@ -3,6 +3,31 @@ const Rectangle = require("../src/rectangle");
 const Point = require("../src/point");
 
 describe("Rectangle", () => {
+
+  describe("#nonEditable", () => {
+    it("should not change the coordinates of vertexA from outside", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(2, 3);
+      const rectangle1 = new Rectangle(vertexA, vertexC);
+      rectangle1.vertexA.x = 5;
+      rectangle1.vertexA.y = 67;
+      const rectangle2 = new Rectangle(new Point(1, 1), new Point(2, 3));
+      const actual = rectangle1.isEqualTo(rectangle2);
+      assert.isOk(actual);
+    });
+
+    it("should not change the coordinates of vertexC from outside", () => {
+      const vertexA = new Point(1, 1);
+      const vertexC = new Point(2, 3);
+      const rectangle1 = new Rectangle(vertexA, vertexC);
+      rectangle1.vertexC.x = 5;
+      rectangle1.vertexC.y = 67;
+      const rectangle2 = new Rectangle(new Point(1, 1), new Point(2, 3));
+      const actual = rectangle1.isEqualTo(rectangle2);
+      assert.isOk(actual);
+    });
+  });
+
   describe("#toString()", () => {
     it("should return the property of Rectangle", () => {
       const vertexA = new Point(1, 1);

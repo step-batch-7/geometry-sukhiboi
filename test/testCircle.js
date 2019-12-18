@@ -3,6 +3,30 @@ const Point = require("../src/point");
 const Circle = require("../src/circle");
 
 describe("circle", () => {
+
+  describe("#nonEditable", () => {
+    it("should not change the coordinates of centre from outside", () => {
+      const centre = new Point(3, 5);
+      const radius = 6;
+      const circle1 = new Circle(centre, radius);
+      circle1.centre.x = 6;
+      circle1.centre.y = 2;
+      const circle2 = new Circle(new Point(3, 5), radius);
+      const actual = circle1.isEqualTo(circle2);
+      assert.isOk(actual);
+    });
+
+    it("should not change radius of circle from outside", () => {
+      const centre = new Point(3, 5);
+      const radius = 6;
+      const circle1 = new Circle(centre, radius);
+      circle1.radius = 8;
+      const circle2 = new Circle(new Point(3, 5), 6);
+      const actual = circle1.isEqualTo(circle2);
+      assert.isOk(actual);
+    });
+  });
+  
   describe("#toString()", () => {
     it("should give properties of the line", () => {
       const centre = new Point(5, 8);

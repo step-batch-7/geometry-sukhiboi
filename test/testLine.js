@@ -3,6 +3,24 @@ const Line = require("../src/line");
 const Point = require("../src/point");
 
 describe("Line", () => {
+
+  describe("#nonEditable", () => {
+    it("should not change the coordinates of line from outside", () => {
+      const point1 = new Point(5, 7);
+      const point2 = new Point(3, 8);
+      const line1 = new Line(point1, point2);
+      line1.start.x = 9;
+      line1.end.y = 2;
+      line1.start.x = 4;
+      line1.end.y = 3;
+      const point3 = new Point(5, 7);
+      const point4 = new Point(3, 8);
+      const line2 = new Line(point3, point4);
+      const actual = line1.isEqualTo(line2);
+      assert.isOk(actual);
+    });
+  });
+
   describe("#toString()", () => {
     it("should give properties of the line", () => {
       const point1 = new Point(2, 5);

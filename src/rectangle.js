@@ -24,6 +24,7 @@ class Rectangle {
   constructor(vertexA, vertexC) {
     this.vertexA = new Point(vertexA.x, vertexA.y);
     this.vertexC = new Point(vertexC.x, vertexC.y);
+    Object.freeze(this)
   }
 
   toString() {
