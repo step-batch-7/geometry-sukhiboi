@@ -255,7 +255,7 @@ describe("Line", () => {
       const point2 = new Point(0, 3);
       const line = new Line(point1, point2);
       const actual = line.slope;
-      assert.isUndefined(actual);
+      assert.strictEqual(actual, Infinity);
     });
   });
 

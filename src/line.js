@@ -56,19 +56,18 @@ class Line {
     const diffOfXCoordinates = this.end.x - this.start.x;
     const diffOfYCoordinates = this.end.y - this.start.y;
     const slope = diffOfYCoordinates / diffOfXCoordinates;
-    if ([Infinity, -Infinity].includes(slope)) return undefined;
     return slope;
   }
 
   findX(y) {
     if (!isCoordinateInRange(this.start.y, this.end.y, y)) return NaN;
-    if ([undefined, 0].includes(this.slope)) return this.start.x;
+    if ([Infinity, 0].includes(this.slope)) return this.start.x;
     return (y - this.start.y) / this.slope + this.start.x;
   }
 
   findY(x) {
     if (!isCoordinateInRange(this.start.x, this.end.x, x)) return NaN;
-    if ([undefined, 0].includes(this.slope)) return this.start.y;
+    if ([Infinity, 0].includes(this.slope)) return this.start.y;
     return this.slope * (x - this.start.x) + this.start.y;
   }
 
