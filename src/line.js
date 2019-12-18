@@ -1,9 +1,12 @@
 const Point = require("./point");
 
 const arePointsCollinear = function(point1, point2, point3) {
-  const line1 = new Line(point1, point2);
-  const line2 = new Line(point2, point3);
-  return line1.slope == line2.slope;
+  const areaOfTriangle =
+    (point1.x * (point2.y - point3.y) +
+      point2.x * (point3.y - point1.y) +
+      point3.x * (point1.y - point2.y)) /
+    2;
+  return areaOfTriangle == 0;
 };
 
 const isCoordinateInRange = function(coordinate1, coordinate2, coordinate3) {
@@ -43,7 +46,7 @@ class Line {
   }
 
   isParallelTo(otherLine) {
-    if(!(otherLine instanceof Line)) return false;
+    if (!(otherLine instanceof Line)) return false;
     if (arePointsCollinear(this.start, this.end, otherLine.start)) return false;
     return this.slope == otherLine.slope;
   }

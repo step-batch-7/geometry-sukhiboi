@@ -139,6 +139,50 @@ describe("Line", () => {
       assert.isNotOk(actual);
     });
 
+    it("should invalidate when two lines are overlapping and on Y axis", function() {
+      const point1 = new Point(0, 2);
+      const point2 = new Point(0, 8);
+      const line1 = new Line(point1, point2);
+      const point3 = new Point(0, 8);
+      const point4 = new Point(0, 10);
+      const line2 = new Line(point3, point4);
+      const actual = line1.isParallelTo(line2);
+      assert.isNotOk(actual);
+    });
+
+    it("should invalidate when two lines are overlapping and parallel to Y axis", function() {
+      const point1 = new Point(6, 2);
+      const point2 = new Point(6, 8);
+      const line1 = new Line(point1, point2);
+      const point3 = new Point(6, 8);
+      const point4 = new Point(6, 10);
+      const line2 = new Line(point3, point4);
+      const actual = line1.isParallelTo(line2);
+      assert.isNotOk(actual);
+    });
+
+    it("should invalidate when two lines are overlapping and on X axis", function() {
+      const point1 = new Point(2, 2);
+      const point2 = new Point(8, 2);
+      const line1 = new Line(point1, point2);
+      const point3 = new Point(8, 2);
+      const point4 = new Point(10, 2);
+      const line2 = new Line(point3, point4);
+      const actual = line1.isParallelTo(line2);
+      assert.isNotOk(actual);
+    });
+
+    it("should invalidate when two lines are overlapping and parallel to X axis", function() {
+      const point1 = new Point(2, 9);
+      const point2 = new Point(8, 9);
+      const line1 = new Line(point1, point2);
+      const point3 = new Point(8, 9);
+      const point4 = new Point(10, 9);
+      const line2 = new Line(point3, point4);
+      const actual = line1.isParallelTo(line2);
+      assert.isNotOk(actual);
+    });
+
     it("should invalidate for two different segments of y-axis", () => {
       const point1 = new Point(0, 2);
       const point2 = new Point(0, 4);
