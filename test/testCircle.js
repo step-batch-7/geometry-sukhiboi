@@ -140,10 +140,10 @@ describe("circle", () => {
   });
 
   describe("#covers()", () => {
-    it("should return true if the point lies in the circle or on circle", () => {
+    it("should return true if the point lies in the circle", () => {
       const point1 = new Point(1, 1);
       const circle = new Circle(point1, 5);
-      const point2 = new Point(1, 6);
+      const point2 = new Point(1, 5);
       const actual = circle.covers(point2);
       assert.isOk(actual);
     });
@@ -156,12 +156,12 @@ describe("circle", () => {
       assert.isNotOk(actual);
     });
 
-    it("should return true if the point lies on the circumference circle", () => {
+    it("should return false if the point lies on the circumference circle", () => {
       const point1 = new Point(1, 1);
       const circle = new Circle(point1, 5);
       const point2 = new Point(1, 6);
       const actual = circle.covers(point2);
-      assert.isOk(actual);
+      assert.isNotOk(actual);
     });
 
     it("should return false if the give object is a Point", () => {
