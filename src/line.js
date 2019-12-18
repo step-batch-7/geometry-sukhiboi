@@ -61,13 +61,13 @@ class Line {
 
   findX(y) {
     if (!isCoordinateInRange(this.start.y, this.end.y, y)) return NaN;
-    if ([Infinity, 0].includes(this.slope)) return this.start.x;
+    if ([Infinity, -Infinity, 0].includes(this.slope)) return this.start.x;
     return (y - this.start.y) / this.slope + this.start.x;
   }
 
   findY(x) {
     if (!isCoordinateInRange(this.start.x, this.end.x, x)) return NaN;
-    if ([Infinity, 0].includes(this.slope)) return this.start.y;
+    if ([Infinity, -Infinity, 0].includes(this.slope)) return this.start.y;
     return this.slope * (x - this.start.x) + this.start.y;
   }
 
