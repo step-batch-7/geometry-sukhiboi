@@ -68,8 +68,8 @@ class Rectangle {
   covers(point) {
     if (!(point instanceof Point)) return false;
     return (
-      isCoordinateInRange(this.vertexA.x, this.vertexC.x, point.x) &&
-      isCoordinateInRange(this.vertexA.y, this.vertexC.y, point.y)
+      isCoordinateInRange(this.vertexA.x+1, this.vertexC.x-1, point.x) &&
+      isCoordinateInRange(this.vertexA.y+1, this.vertexC.y-1, point.y)
     );
   }
 }

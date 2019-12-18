@@ -184,13 +184,13 @@ describe("Rectangle", () => {
       assert.isOk(actual);
     });
 
-    it("should validate when the point is on the rectangle", () => {
+    it("should invalidate when the point is on the rectangle", () => {
       const vertexA = new Point(1, 1);
       const vertexC = new Point(5, 4);
       const rectangle = new Rectangle(vertexA, vertexC);
       const point = new Point(1, 3);
       const actual = rectangle.covers(point);
-      assert.isOk(actual);
+      assert.isNotOk(actual);
     });
 
     it("should invalidate when the point is outside the rectangle", () => {
