@@ -229,7 +229,7 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = 0;
-      assert.approximately(actual, expected, 0.001);
+      assert.strictEqual(actual, expected);
     });
 
     it("should calculate the slope of line with different start and end point when both are negative", () => {
@@ -238,7 +238,7 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = -1;
-      assert.approximately(actual, expected, 0.001);
+      assert.strictEqual(actual, expected);
     });
 
     it("should calculate the slope of line parallel to X-axis", () => {
@@ -247,7 +247,7 @@ describe("Line", () => {
       const line = new Line(point1, point2);
       const actual = line.slope;
       const expected = 0;
-      assert.approximately(actual, expected, 0.001);
+      assert.strictEqual(actual, expected);
     });
 
     it("should calculate the slope of line parallel to Y-axis", () => {

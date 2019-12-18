@@ -57,6 +57,7 @@ class Line {
     const diffOfYCoordinates = this.end.y - this.start.y;
     const slope = diffOfYCoordinates / diffOfXCoordinates;
     if(slope == -Infinity) return Infinity;
+    if(slope == -0) return 0;
     return slope;
   }
 
