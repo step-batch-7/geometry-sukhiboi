@@ -89,7 +89,7 @@ class Line {
   }
 
   findPointFromStart(distance) {
-    if (!Number.isInteger(distance)) return null;
+    if (!Number.isFinite(distance)) return null;
     if (distance > this.length || distance < 0) return null;
     const distanceRatio = distance / this.length;
     const x = (1 - distanceRatio) * this.start.x + distanceRatio * this.end.x;
